@@ -101,3 +101,14 @@ Route::get('/quiz_questions/edit/{quiz_id}', 'QuizQuestionsController@edit')->na
 Route::post('/quiz_questions/edit/{quizQuestion}', 'QuizQuestionsController@update')->name('quiz_questions.update');
 
 Route::delete('/quiz_questions/delete/{quizQuestion}', 'QuizQuestionsController@destroy')->name('quiz_questions.delete');
+
+
+// Quiz Results
+Route::get('/quiz_results/index', 'QuizResultsController@index')->name('quiz_results.index')
+    ->defaults('_config', ['view' => 'quiz_results.index']);
+
+
+
+// Quiz Sessions
+Route::get('/quiz_sessions/index', 'QuizSessionsController@index')->name('quiz_sessions.index')
+    ->defaults('_config', ['view' => 'quiz_sessions.index']);

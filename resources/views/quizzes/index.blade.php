@@ -60,18 +60,18 @@
                                         <td>{{ $quiz->start_date->format('l jS \\of F, Y')  }}</td>
                                         <td>{{ $quiz->end_date->format('l jS \\of F, Y') }}</td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" href="{{ route('quiz_questions.index', ['quiz_id' => $quiz->id]) }}">Add Questions</a>
+                                            <a class="btn btn-primary btn-sm" href="{{ route('quiz_questions.index', ['quiz_id' => $quiz->id]) }}">Questions</a>
                                             <a class="btn btn-primary btn-sm" href="{{ route('quizzes.edit', $quiz->id) }}">Edit</a>
                                             <a class="btn btn-info btn-sm" href="{{ route('quizzes.view', $quiz->id) }}">View</a>
                                             <a class="btn btn-danger btn-sm"
                                                href="{{ route('quizzes.edit', $quiz->id) }}"
-                                               onclick="event.preventDefault(); if (confirm('Are you sure?')) {
+                                               onclick="event.preventDefault(); if (confirm('Are you sure? it will delete the quiz and all its data.')) {
                                                    document.getElementById('{{ $quiz->id }}').submit();
                                                    } "
                                             >
                                                 Delete
                                             </a>
-                                            <form method="POST" style="display: none;" id="{{$quiz->id}}" action="{{ route('questions.delete', $quiz->id) }}">
+                                            <form method="POST" style="display: none;" id="{{$quiz->id}}" action="{{ route('quizzes.delete', $quiz->id) }}">
                                                 @csrf
                                                 <input type="hidden" name="_method" value="DELETE">
                                             </form>

@@ -15,7 +15,7 @@
                         <table class="table table-bordered">
                             <tr>
                                 <th> Question </th>
-                                <td> {!! $quiz->name !!} </td>
+                                <td> {{ $quiz->name }} </td>
                             </tr>
                             <tr>
                                 <th> Description</th>
@@ -23,15 +23,15 @@
                             </tr>
                             <tr>
                                 <th> Start Date </th>
-                                <td> {!! $quiz->start_date !!} </td>
+                                <td> {{ $quiz->start_date->format('l jS \\of F, Y') }} </td>
                             </tr>
                             <tr>
                                 <th> End Date </th>
-                                <td> {!! ($quiz->end_date) ? $quiz->end_date : '' !!} </td>
+                                <td> {{ ($quiz->end_date) ? $quiz->end_date->format('l jS \\of F, Y') : '' }} </td>
                             </tr>
                             <tr>
                                 <th> Duration </th>
-                                <td> {!! $quiz->duration !!} mins </td>
+                                <td> {{ $quiz->duration }} mins </td>
                             </tr>
 
                             <tr>
@@ -51,7 +51,30 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table class="table table-bordered">
-
+                            <thead>
+                                <tr>
+                                    <td>Number</td>
+                                    <td>Question</td>
+                                    <td> Subject </td>
+                                    <td>Type</td>
+                                    <td> Score </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @if(isset($questions) && !$questions->isEmpty())
+                                <?php $number = 1; ?>
+                                @foreach($questions as $question)
+                                    <tr>
+                                        <td> {{ $number }}</td>
+                                        <td>{{ $question->question->question }} </td>
+                                        <td> {{ ($question->question->subject) ? $question->question->subject->name : '' }} </td>
+                                        <td> {{ $question->question->type }} </td>
+                                        <td> {{ $question->score }} </td>
+                                    </tr>
+                                    <?php $number++; ?>
+                                @endforeach
+                            @endif
+                            </tbody>
                         </table>
                     </div>
                     <!-- /.card-body -->
