@@ -26,12 +26,13 @@
 
                         <div class="form-group">
                             <label for="start_date">Start Date</label>
-                            {!! Form::text('start_date', null, ['class' => 'form-control']) !!}
+                            {!! Form::text('start_date', null, [
+                                'class' => 'form-control quiz_date']) !!}
                         </div>
 
                         <div class="form-group">
                             <label for="end_date">End Date</label>
-                            {!! Form::text('end_date', null, ['class' => 'form-control']) !!}
+                            {!! Form::text('end_date', null, ['class' => 'form-control quiz_date']) !!}
                         </div>
 
                         <div class="form-group">
@@ -104,3 +105,28 @@
 
 
 @endsection
+
+@section('footer-script')
+    <script>
+        // date time picker
+        /*var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+        if(dd<10){ dd='0'+dd }
+        if(mm<10){ mm='0'+mm }
+        var today = dd+'/'+mm+'/'+yyyy;
+        var today = mm+'/'+dd+'/'+yyyy;*/
+
+        $('.quiz_date').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+              'format': 'DD-MM-YYYY'
+            },
+            minYear: parseInt(moment().format('YYYY'), 10),
+            maxYear: parseInt(moment().format('YYYY'),10) + 5
+        });
+    </script>
+
+@stop

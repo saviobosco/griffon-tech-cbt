@@ -57,13 +57,14 @@
                                         <td>{{ $quiz->id }}</td>
                                         <td>{{ $quiz->name }}</td>
                                         <td>{{ $quiz->created_at->format('d-m-Y') }}</td>
-                                        <td>{{ $quiz->start_date }}</td>
-                                        <td>{{ $quiz->end_date }}</td>
+                                        <td>{{ $quiz->start_date->format('l jS \\of F, Y')  }}</td>
+                                        <td>{{ $quiz->end_date->format('l jS \\of F, Y') }}</td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" href="{{ route('questions.edit', $quiz->id) }}">Edit</a>
-                                            <a class="btn btn-info btn-sm" href="{{ route('questions.view', $quiz->id) }}">View</a>
+                                            <a class="btn btn-primary btn-sm" href="{{ route('quiz_questions.index', ['quiz_id' => $quiz->id]) }}">Add Questions</a>
+                                            <a class="btn btn-primary btn-sm" href="{{ route('quizzes.edit', $quiz->id) }}">Edit</a>
+                                            <a class="btn btn-info btn-sm" href="{{ route('quizzes.view', $quiz->id) }}">View</a>
                                             <a class="btn btn-danger btn-sm"
-                                               href="{{ route('questions.edit', $quiz->id) }}"
+                                               href="{{ route('quizzes.edit', $quiz->id) }}"
                                                onclick="event.preventDefault(); if (confirm('Are you sure?')) {
                                                    document.getElementById('{{ $quiz->id }}').submit();
                                                    } "

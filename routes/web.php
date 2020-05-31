@@ -79,7 +79,25 @@ Route::get('/quizzes/edit/{quiz}', 'QuizzesController@edit')->name('quizzes.edit
     ->defaults('_config', ['view' => 'quizzes.edit']);
 Route::post('/quizzes/edit/{quiz}', 'QuizzesController@update')->name('quizzes.update')
     ->defaults('_config', ['redirect' => 'quizzes.index']);
-Route::get('/quizzes/view/{quiz}', 'QuizzesController@create')->name('quizzes.view')
-    ->defaults('_config', ['view' => 'quizzes.create']);
+Route::get('/quizzes/view/{quiz}', 'QuizzesController@show')->name('quizzes.view')
+    ->defaults('_config', ['view' => 'quizzes.view']);
 Route::delete('/quizzes/delete/{quiz}', 'QuizzesController@destroy')->name('quizzes.delete')
     ->defaults('_config', ['redirect' => 'quizzes.index']);
+
+
+
+// Quiz Questions
+Route::get('/quiz_questions/index', 'QuizQuestionsController@index')->name('quiz_questions.index')
+    ->defaults('_config', ['view' => 'quizzes.index']);
+
+Route::get('/quiz_questions/create', 'QuizQuestionsController@create')->name('quiz_questions.create')
+    ->defaults('_config', ['view' => 'quizzes.index']);
+
+Route::post('/quiz_questions/create', 'QuizQuestionsController@store')->name('quiz_questions.store');
+
+Route::get('/quiz_questions/edit/{quiz_id}', 'QuizQuestionsController@edit')->name('quiz_questions.edit')
+    ->defaults('_config', ['view' => 'quiz_questions.edit']);
+
+Route::post('/quiz_questions/edit/{quizQuestion}', 'QuizQuestionsController@update')->name('quiz_questions.update');
+
+Route::delete('/quiz_questions/delete/{quizQuestion}', 'QuizQuestionsController@destroy')->name('quiz_questions.delete');

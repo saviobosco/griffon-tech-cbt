@@ -10,10 +10,12 @@ class Quiz extends Model
 {
     protected $table = 'quizzes';
 
+    protected $dates = ['created_at', 'updated_at', 'start_date', 'end_date'];
+
     protected $fillable = [
         'name',
         'description',
-        'start_time',
+        'start_date',
         'end_date',
         'question_ids',
         'no_of_questions',
@@ -28,5 +30,11 @@ class Quiz extends Model
         'template',
         'price'
     ];
+
+
+    public function questions()
+    {
+        return $this->hasMany(QuizQuestion::class, 'quiz_id', 'id');
+    }
 
 }

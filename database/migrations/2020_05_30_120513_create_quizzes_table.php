@@ -17,10 +17,10 @@ class CreateQuizzesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description')->nullable();
-            $table->bigInteger('start_date');
-            $table->bigInteger('end_date')->nullable();
+            $table->timestamp('start_date');
+            $table->timestamp('end_date')->nullable();
             $table->text('question_ids')->nullable();
-            $table->integer('no_of_questions');
+            $table->integer('no_of_questions')->default(0);
             $table->text('ip_addresses');
             $table->integer('duration')->comment('duration in minutes');
             $table->float('pass_percentage')->default(50);
