@@ -47,6 +47,7 @@
                                 <th>Date Created</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
+                                <th>No Of Questions</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -59,6 +60,7 @@
                                         <td>{{ $quiz->created_at->format('d-m-Y') }}</td>
                                         <td>{{ $quiz->start_date->format('l jS \\of F, Y')  }}</td>
                                         <td>{{ ($quiz->end_date) ? $quiz->end_date->format('l jS \\of F, Y') : '' }}</td>
+                                        <td> {{ $quiz->questions->count() }} </td>
                                         <td>
                                             <a class="btn btn-primary btn-sm" href="{{ route('quiz_questions.index', ['quiz_id' => $quiz->id]) }}">Questions</a>
                                             <a class="btn btn-primary btn-sm" href="{{ route('quizzes.edit', $quiz->id) }}">Edit</a>
