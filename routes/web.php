@@ -25,7 +25,7 @@ Route::get('/subjects/index', 'SubjectsController@index')->name('subjects.index'
 Route::get('/subjects/create', 'SubjectsController@create')->name('admin.subjects.create')
     ->defaults('_config', ['view' => 'subjects.create']);
 Route::post('/subjects/create', 'SubjectsController@store')->name('subjects.store')
-    ->defaults('_config', ['redirect' => 'subjects.index']);
+    ->defaults('_config', ['redirect' => 'admin.subjects.create']);
 Route::get('/subjects/edit/{subject}', 'SubjectsController@edit')->name('subjects.edit')
     ->defaults('_config', ['view' => 'subjects.edit']);
 Route::post('/subjects/edit/{subject}', 'SubjectsController@update')

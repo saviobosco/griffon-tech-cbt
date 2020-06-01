@@ -50,8 +50,12 @@ class QuizzesController extends Controller
         ]);
 
         $postData = $request->input();
-        $postData['start_date'] = (new Carbon($postData['start_date']))->toDateTimeString();;
-        $postData['end_date'] = (new Carbon($postData['end_date']))->toDateTimeString();;
+        $postData['start_date'] = (new Carbon($postData['start_date']))->toDateTimeString();
+
+        if (!empty($postData['end_date'])) {
+            $postData['end_date'] = (new Carbon($postData['end_date']))->toDateTimeString();
+        }
+
         if (empty($postData['ip_addresses'])) {
             $postData['ip_addresses'] = '*';
         }
@@ -90,8 +94,13 @@ class QuizzesController extends Controller
         ]);
 
         $postData = $request->input();
-        $postData['start_date'] = (new Carbon($postData['start_date']))->toDateTimeString();;
-        $postData['end_date'] = (new Carbon($postData['end_date']))->toDateTimeString();;
+        $postData['start_date'] = (new Carbon($postData['start_date']))->toDateTimeString();
+        if (isset($postData['end_date']) && !empty($postData['end_date'])) {
+            $postData['end_date'] = (new Carbon($postData['end_date']))->toDateTimeString();
+        } else {
+            $postData['end_date'] = null;
+        }
+
         if (empty($postData['ip_addresses'])) {
             $postData['ip_addresses'] = '*';
         }
