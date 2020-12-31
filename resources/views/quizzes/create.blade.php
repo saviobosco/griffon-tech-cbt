@@ -31,8 +31,14 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="add_end_date">
+                                <input id="add_end_date" type="checkbox"> Add End Date
+                            </label>
+                        </div>
+
+                        <div class="form-group end_date" style="display: none;">
                             <label for="end_date">End Date</label>
-                            {!! Form::text('end_date', null, ['class' => 'form-control quiz_date']) !!}
+                            {!! Form::text('end_date', null, ['class' => 'form-control quiz_date', 'id' => 'end_date', 'disabled' => 'disabled']) !!}
                         </div>
 
                         <div class="form-group">
@@ -127,6 +133,19 @@
             minYear: parseInt(moment().format('YYYY'), 10),
             maxYear: parseInt(moment().format('YYYY'),10) + 5
         });
+
+        $('#end_date').val('');
+
+        $('#add_end_date').click(function(event){
+            if ($(this).prop('checked') == true){
+                $('.end_date').show();
+                $('#end_date').prop('disabled', false);
+            } else if ($(this).prop('checked') == false) {
+                $('.end_date').hide();
+                $('#end_date').prop('disabled', true);
+            }
+        });
+
     </script>
 
 @stop

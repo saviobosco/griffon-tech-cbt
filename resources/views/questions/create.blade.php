@@ -54,18 +54,18 @@
 
                             <div id="question_options_container" style="display: none">
                                 <h2> Question Options </h2>
-                                <div class="mb-2">
-                                    <button id="add_new_option" class="btn btn-primary"> Add New Option</button>
-                                </div>
 
 
-
+                            </div>
+                            <div style="display: none;" id="option_button_container" class="mb-2">
+                                <button id="add_new_option" class="btn btn-primary"> Add New Option</button>
                             </div>
 
 
 
+
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="float-right btn btn-primary">Submit</button>
                             </div>
                         {!! Form::close() !!}
 
@@ -97,6 +97,7 @@
                if ($.inArray(question_type, ['multiple_select_multiple_answer', 'multiple_select_single_answer', 'match_the_column']) !== -1) {
                    // show the options
                    $('#question_options_container').show();
+                   $('#option_button_container').show();
                }
                $('#question_form').show();
 

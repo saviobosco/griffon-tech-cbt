@@ -26,13 +26,29 @@
 
                         <div class="form-group">
                             <label for="start_date">Start Date</label>
-                            {!! Form::text('start_date', null, [
+                            {!! Form::text('start_date', $quiz->start_date->format('d-m-Y'), [
                                 'class' => 'form-control quiz_date']) !!}
                         </div>
 
                         <div class="form-group">
+                            <label for="add_end_date">
+                                <input <?= ($quiz->end_date) ? 'checked' : '' ?> id="add_end_date" type="checkbox"> Add End Date
+                            </label>
+                        </div>
+
+                        <div class="form-group end_date" style=" <?= ($quiz->end_date) ? '' : 'display: none;'  ?>">
                             <label for="end_date">End Date</label>
-                            {!! Form::text('end_date', null, ['class' => 'form-control quiz_date']) !!}
+                            <?php
+                            $formOptions = [
+                                'class' => 'form-control quiz_date',
+                                'id' => 'end_date',
+                                ];
+                            if (empty($quiz->end_date)) {
+                                $formOptions['disabled'] = 'disabled';
+                            }
+                            ?>
+
+                            {!! Form::text('end_date', $quiz->end_date->format('d-m-Y'), $formOptions) !!}
                         </div>
 
                         <div class="form-group">
@@ -115,6 +131,16 @@
             },
             minYear: parseInt(moment().format('YYYY'), 10),
             maxYear: parseInt(moment().format('YYYY'),10) + 5
+        });
+
+        $('#add_end_date').click(function(event){
+            if ($(this).prop('checked') == true){
+                $('.end_date').show();
+                $('#end_date').prop('disabled', false);
+            } else if ($(this).prop('checked') == false) {
+                $('.end_date').hide();
+                $('#end_date').prop('disabled', true);
+            }
         });
     </script>
 

@@ -26,6 +26,10 @@
                                 <td> {!! $question->description !!} </td>
                             </tr>
                             <tr>
+                                <th> Subject </th>
+                                <td> {{ ($question->subject) ? $question->subject->name : '' }} </td>
+                            </tr>
+                            <tr>
                                 <th> Total Times Shown</th>
                                 <td> 1 </td>
                             </tr>
