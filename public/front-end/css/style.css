@@ -1,0 +1,393 @@
+@charset "UTF-8";
+html {
+    box-sizing: border-box;
+}
+
+* ,
+*:before,
+*:after {
+    box-sizing: inherit;
+    /*outline: 1px dotted black; */
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    color: #555;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+/** Margins */
+.m-t-20 {
+    margin-top: 20px;
+}
+
+.m-t-30 {
+    margin-top: 30px !important;
+}
+
+/** Layout grid */
+
+.l-wrap {
+    max-width: 1140px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.l-wrap-fluid {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.grid-item {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/** Clearing floated children */
+.three-col-grid:after {
+    display: table;
+    clear: both;
+    content: '';
+}
+.col-grid:after {
+    display: table;
+    clear: both;
+    content: '';
+}
+
+.three-col-grid .grid-item {
+    width: calc((100% - 20px * 3) / 3);
+    float: left;
+}
+/** For a 3-column grid */
+/*.three-col-grid .grid-item:nth-child(3n + 3) {
+    float: right;
+}*/
+
+
+/** For a 4-column grid */
+.four-col-grid .grid-item {
+    width: calc((100% - 20px * 4) / 4);
+    float: left;
+}
+
+/** For a 5-column grid */
+.five-col-grid .grid-item {
+    width: calc((100% - 20px * 5) / 5);
+    float: left;
+}
+
+
+
+
+/** btn */
+.btn {
+    background-color: gray;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: orange;
+    border-color: orange;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.btn-wide {
+    display: inline-block;
+    width: 100%;
+}
+
+.btn-special {
+    text-transform: uppercase;
+    line-height: 1.5em;
+    font-weight: 600;
+}
+
+
+
+/** header style declarations */
+header {
+    background-color: #2d3d4c;
+    color: #fff;
+    padding: 1em 5em;
+}
+
+header nav {
+    float: right;
+    padding-top: 1em;
+}
+header nav ul {
+    list-style: none;
+    vertical-align: center;
+}
+header li {
+    display: inline;
+}
+header nav li {
+    margin-right: 15px;
+    text-transform: uppercase;
+}
+
+header nav li a {
+    color: #fff;
+}
+
+/** hero section */
+.main-hero {
+    background-image: linear-gradient(90deg, rgba(45, 61, 76, 0.7) 50%, rgba(45, 61, 76, 0.5)), url(../images/hero.jpg);
+    height:70vh;
+    padding-top: 50px;
+}
+
+.hero-text-container {
+    margin: 10px auto;
+    width: 60%;
+    text-align: center;
+}
+
+.hero-text-container h1 {
+    margin-top: 0;
+    font-size: 250%;
+    color: #fff;
+    margin-bottom: 3px;
+    text-transform: capitalize;
+}
+
+.hero-text-container h1 ~ p {
+    color: rgba(255, 255, 255, 0.795);
+    margin-top: 6px;
+    font-size: 100%;
+}
+.hero-text-container .call-for-action {
+    margin-top: 40px;
+}
+
+
+/** section */
+section {
+    padding-top: 80px;
+    padding-bottom: 50px;
+    text-align: center;
+    line-height: 1.5em;
+}
+
+section h2 {
+    font-size: 230%;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
+    color: #444;
+    line-height: 1.5em;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.section-heading p {
+    margin-top: 3px;
+    line-height: 1.5em;
+    font-size: 130%;
+}
+section div.grid-item {
+    padding: 20px 25px;
+}
+section  h3 {
+    margin-top: 0;
+    font-weight: 700;
+}
+.main-feature {
+    background-color: #f8f8f8;
+}
+
+.how_it_works h3 {
+    font-weight: 400;
+}
+
+/** prduct features */
+.circle-product-img {
+    border: 2px solid #a8a8a8;
+    display: inline-block;
+    height: 120px;
+    width: 120px;
+    border-radius: 100%;
+    margin-bottom: 20px;
+}
+
+.product_feature {
+    border-radius: 100%;
+    display: inline-block;
+    height: 117px;
+    width: 117px;
+    transition: all .4s ease;
+}
+
+.sprite3 {
+    background: url(../images/sprite3.png);
+}
+
+.questions_database {
+    background-position: -109px 6px;
+}
+
+.design_test {
+    background-position: -373px -88px;
+}
+.assign_test {
+    background-position: -117px -94px;
+}
+.generate_result {
+    background-position: -390px 8px;
+}
+
+
+
+section img {
+    height: 40px;
+}
+
+
+.main-feature .feature-img {
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+
+
+/** footer */
+footer {
+    background-color: #2d3d4c;
+    padding-top: 40px;
+    padding-bottom: 15px;
+    color: #fff;
+}
+
+footer ul.higher-links {
+    list-style: none;
+    padding-left: 0;
+}
+
+footer div.grid-item {
+    padding: 10px;
+}
+footer ul.higher-links li, ul.footer-links li:first-child {
+    font-size: 100%;
+    color: #fff;
+    padding: 5px 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+footer ul.higher-links a {
+    font-size: 1em;
+    color: #fff;
+}
+
+ul.footer-links {
+    list-style: none;
+    padding-left: 0;
+}
+ul.footer-links li {
+    padding: 5px;
+    line-height: 1.5em;
+}
+
+footer a, .copyright-container a {
+    color: #ffffffc7;
+    font-size: 90%;
+}
+
+footer a:link {
+    color: #ffffffc7;
+}
+
+footer a:visited {
+    color: #ffffffc7;
+}
+footer a:focus {
+    color: #fff;
+}
+footer a:hover {
+    color: #fff;
+}
+
+.copyright-container {
+    background-color: #222d36;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+.copyright-container p {
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+.copyright-container p, .copyright-container small {
+    color: #888;
+}
+
+
+/** Sign Up and Login */
+.registration-container {
+    padding: 50px 20px;
+}
+
+.registration-holder {
+    width: 80%;
+    margin: 1em auto;
+    position: relative;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.07), 
+                0 15px 35px 0 rgba(56, 56, 56, 0.2);
+}
+
+.registration-sidebar {
+    background-color: #2d3d4c;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 320px;
+    color: #fff;
+    padding: 0.8em;
+    text-align: center;
+}
+
+.registration-sidebar  div {
+    width: 70%;
+    margin: 1px auto;
+}
+
+
+.registration-form-holder {
+    padding: 30px;
+    margin-left: 320px;
+}
+
+
+.form-group {
+    margin: 15px 0;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 3px;
+    border: 1px solid black;
+    font-size: 1.2em;
+}
+
+.registration-form-holder label {
+    text-transform: uppercase;
+}

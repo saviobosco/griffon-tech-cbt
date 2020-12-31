@@ -174,7 +174,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        \GriffonTech\Admin\Providers\AdminServiceProvider::class,
+        \GriffonTech\Quiz\Providers\QuizServiceProvider::class,
+        \GriffonTech\User\Providers\UserServiceProvider::class
     ],
 
     /*

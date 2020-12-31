@@ -36,7 +36,16 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "GriffonTech\\Admin\\": "packages/GriffonTech/Admin/src",
+            "GriffonTech\\Core\\": "packages/GriffonTech/Core/src",
+            "GriffonTech\\Subject\\": "packages/GriffonTech/Subject/src",
+            "GriffonTech\\Question\\": "packages/GriffonTech/Question/src",
+            "GriffonTech\\Quiz\\": "packages/GriffonTech/Quiz/src",
+            "GriffonTech\\User\\": "packages/GriffonTech/User/src",
+            "GriffonTech\\Test\\": "packages/GriffonTech/Test/src",
+            "GriffonTech\\Product\\": "packages/GriffonTech/Product/src",
+            "GriffonTech\\Candidate\\": "packages/GriffonTech/Candidate/src"
         },
         "classmap": [
             "database/seeds",
