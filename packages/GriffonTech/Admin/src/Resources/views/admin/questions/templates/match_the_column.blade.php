@@ -95,9 +95,9 @@
             </div>
         </div>
 
-        <div>
+<!--        <div>
             <button class="float-right" id="add-new-option"> <i class="fa fa-plus"></i> Add new option </button>
-        </div>
+        </div>-->
     </div>
 </div>
 

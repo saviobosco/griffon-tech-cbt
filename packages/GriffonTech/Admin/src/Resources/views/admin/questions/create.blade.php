@@ -173,6 +173,11 @@
 
             // add new topic modal.
             $("#question-entry-options-topic-id").on("change", function(event) {
+                if (!checkIfSubjectIdExists()) {
+                    toastr.error('Select Subject.');
+                    event.target.value = 0;
+                    return false;
+                }
                 var value = (event.target.value !== undefined) ? event.target.value : false;
                 if (value === 'add-topic') {
                     $('#add-topic-modal').modal({backdrop: 'static', keyboard: true});
@@ -222,7 +227,7 @@
             });
 
 
-            // add the subject modal form
+            // add topic modal form handler
             $("#add-topic-form").submit(function(event) {
                 event.preventDefault();
 

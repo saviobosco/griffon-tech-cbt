@@ -9,7 +9,7 @@
 <div>
     <input type="hidden" id="question-subject-id" name="subject_id">
     <input type="hidden" id="question-subject-topic-id" name="topic_id">
-    <input type="hidden" name="type" id="type" value="multiple_choice">
+    <input type="hidden" name="type" id="question-type" value="multiple_choice">
 </div>
 
 <div class="mb-5">
@@ -185,7 +185,7 @@
         $("#question-subject-id").val(subject_id.val());
         $("#question-subject-topic-id").val(topic_id.val());
 
-
+        // on changes to any of the inputs? make changes to the hidden inputs.
         $("#question-entry-options-subject-id, #question-entry-options-topic-id").change(function(event) {
             var subject_id = $("#question-entry-options-subject-id");
             var topic_id = $("#question-entry-options-topic-id");
@@ -193,4 +193,33 @@
             $("#question-subject-topic-id").val(topic_id.val());
         });
     }
+
+    // add question form handler
+    $(document).ready(function() {
+        $('#question_form').submit(function(event){
+            event.preventDefault();
+            // check the question type
+            let question_type = $('#question-type').val();
+            // if the type is multiple choices or multiple response
+            if (question_type === 'multiple_choice') {
+                let option_selected = false;
+                let options = $('#question_form .question-option-container input');
+                options = Array.prototype.slice.call(options);
+
+                options.forEach(function(value) {
+                    if ($(value).is(':checked')) {
+                        option_selected = true;
+                    }
+                });
+                if (option_selected === false) {
+                    toastr.error('Select as least one option as correct answer!');
+                    return false;
+                }
+            }
+
+            // remove the event handler and submit the form;
+            $(this).off('submit').submit();
+        });
+    });
+
 </script>

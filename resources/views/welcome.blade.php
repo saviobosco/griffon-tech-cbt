@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title> {{ config('app.name') }}</title>
-
+    <link rel="shortcut icon" type="image/png" href="{{ asset('front-end/images/logo_200x200.png') }}"/>
     <link rel="stylesheet" href="{{ asset('front-end/css/style.css') }}">
 </head>
 <body>
