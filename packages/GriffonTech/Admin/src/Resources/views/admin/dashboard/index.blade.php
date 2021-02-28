@@ -1,5 +1,10 @@
 @extends('admin::layouts.master')
 
+@section('page_title')
+    Dashboard
+@endsection
+
+
 @section('content')
 
     <div class="container-fluid dashboard-view">
@@ -31,7 +36,7 @@
                     <div class="icon">
                         <i class="fa fa-database"></i>
                     </div>
-                    <a href="#" class="small-box-footer"> <i class="fas fa-plus"></i> Add New Question </a>
+                    <a href="{{ route('admin.questions.create') }}" class="small-box-footer"> <i class="fas fa-plus"></i> Add New Question </a>
                 </div>
             </div>
             <!-- ./col -->
@@ -46,7 +51,7 @@
                     <div class="icon">
                         <i class="fa fa-clipboard-check"></i>
                     </div>
-                    <a href="#" class="small-box-footer"> <i class="fas fa-plus"></i> Add New Test </a>
+                    <a href="{{ route('admin.tests.create') }}" class="small-box-footer"> <i class="fas fa-plus"></i> Add New Test </a>
                 </div>
             </div>
             <!-- ./col -->

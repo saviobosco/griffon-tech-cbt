@@ -1,5 +1,8 @@
 @extends('admin::layouts.master')
 
+@section('page_title')
+    Questions
+@endsection
 
 @section('content')
 

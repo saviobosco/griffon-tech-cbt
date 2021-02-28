@@ -60,17 +60,29 @@ Route::group(['middleware' => ['web']], function() {
 
 
             /** Subject Topics */
-            Route::get('subjects/{subject_id}/subject-topics/index', 'GriffonTech\Admin\Http\Controllers\SubjectTopicsController@index')->defaults('_config', [
+            Route::get('subjects/{subject_id}/topics/index', 'GriffonTech\Admin\Http\Controllers\SubjectTopicsController@index')->defaults('_config', [
                 'view' => 'admin::admin.subject_topics.index'
             ])->name('admin.subject_topics.index');
 
-            Route::get('subject-topics/create', 'GriffonTech\Admin\Http\Controllers\SubjectTopicsController@create')->defaults('_config', [
+            Route::get('subjects/{subject_id}/topics/create', 'GriffonTech\Admin\Http\Controllers\SubjectTopicsController@create')->defaults('_config', [
                 'view' => 'admin::admin.subject_topics.create'
             ])->name('admin.subject_topics.create');
 
             Route::post('subject-topics/create', 'GriffonTech\Admin\Http\Controllers\SubjectTopicsController@store')->defaults('_config', [
                 'redirect' => 'admin.subject_topics.index'
             ])->name('admin.subject_topics.store');
+
+            Route::get('subject-topics/edit/{topic}', 'GriffonTech\Admin\Http\Controllers\SubjectTopicsController@edit')->defaults('_config', [
+                'view' => 'admin::admin.subject_topics.edit'
+            ])->name('admin.subject_topics.edit');
+
+            Route::post('subject-topics/edit/{topic}', 'GriffonTech\Admin\Http\Controllers\SubjectTopicsController@update')->defaults('_config', [
+                'redirect' => 'admin.subject_topics.index'
+            ])->name('admin.subject_topics.update');
+
+            Route::delete('subject-topics/delete/{topic}', 'GriffonTech\Admin\Http\Controllers\SubjectTopicsController@destroy')->defaults('_config', [
+                'redirect' => 'admin.subject_topics.index'
+            ])->name('admin.subject_topics.delete');
 
 
             /** Questions */

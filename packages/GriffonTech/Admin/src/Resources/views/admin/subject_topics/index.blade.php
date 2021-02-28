@@ -1,5 +1,8 @@
 @extends('admin::layouts.master')
 
+@section('page_title')
+    {{ $subject->name }} Topics
+@stop
 
 @section('content')
 
@@ -10,7 +13,7 @@
                     <div class="col-9">
                         <form action="" class="form-inline">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter Subject Name">
+                                <input type="text" class="form-control" placeholder="Enter Topic">
                             </div>
                             <div class="form-group ml-4">
                                 <button class="btn btn-primary"> Search </button>
@@ -19,7 +22,7 @@
                     </div>
                     <div class="col-3">
                         <div class="mb-3 float-right">
-                            <a class="btn btn-default btn-sm" href="{{ route('admin.subjects.create') }}"> <i class="fa fa-plus"></i> Add Subject</a>
+                            <a class="btn btn-default btn-sm" href="{{ route('admin.subject_topics.create', $subject->id) }}"> <i class="fa fa-plus"></i> Add Topic</a>
                         </div>
                     </div>
                 </div>
@@ -28,17 +31,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Subjects</h3>
-
-                        <div class="card-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                                </div>
-                            </div>
-                        </div>
+                        <h3 class="card-title"> {{ $subject->name }} Topics</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0" style="height: 100%;">
@@ -51,23 +44,22 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if (isset($subjects) && !empty($subjects))
-                                @foreach($subjects as $subject)
+                            @if (isset($topics) && !empty($topics))
+                                @foreach($topics as $topic)
                                     <tr>
-                                        <td>{{ $subject->id }}</td>
-                                        <td>{{ $subject->name }}</td>
+                                        <td>{{ $topic->id }}</td>
+                                        <td>{{ $topic->topic }}</td>
                                         <td>
-                                            <a class="text-primary mr-2" href="{{ route('admin.subject_topics.index', $subject->id) }}"> Topics </a>
-                                            <a class="text-gray-dark" href="{{ route('admin.subjects.edit', $subject->id) }}"> <i class="fa fa-pen"></i> </a>
+                                            <a class="text-gray-dark" href="{{ route('admin.subject_topics.edit', $topic->id) }}"> <i class="fa fa-pen"></i> </a>
                                             <a class="text-danger ml-3"
                                                href="#"
                                                onclick="event.preventDefault(); if (confirm('Are you sure?')) {
-                                                   document.getElementById('{{ $subject->id }}').submit();
+                                                   document.getElementById('{{ $topic->id }}').submit();
                                                    } "
                                             >
                                                 <i class="fa fa-trash-alt"></i>
                                             </a>
-                                            <form method="POST" style="display: none;" id="{{$subject->id}}" action="{{ route('admin.subjects.delete', $subject->id) }}">
+                                            <form method="POST" style="display: none;" id="{{$topic->id}}" action="{{ route('admin.subject_topics.delete', $topic->id) }}">
                                                 @csrf
                                                 <input type="hidden" name="_method" value="DELETE">
                                             </form>
@@ -77,7 +69,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="5" class="text-center">No Subjects!</td>
+                                    <td colspan="5" class="text-center">No Topics Yet!</td>
                                 </tr>
 
                             @endif
