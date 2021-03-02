@@ -164,7 +164,7 @@
         event.preventDefault();
 
         $.post(this.action, $(this).serialize(), function(response) {
-
+            toastr.success('Saved!');
             fetchQuestion();
         });
     });
