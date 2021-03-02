@@ -144,7 +144,7 @@
             }
         });
 
-        $.get(window.location.origin + '/admin/subjects/' + subject_id + '/subject-topics/index', function(response){
+        $.get(window.location.origin + '/admin/subjects/' + subject_id + '/topics/index', function(response){
             if (response && response.type !== undefined) {
                 if (response.data.length > 0) {
                     response.data.forEach(function(topic){

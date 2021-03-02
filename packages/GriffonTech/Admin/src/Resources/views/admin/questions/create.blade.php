@@ -32,7 +32,10 @@
 
                             <div class="form-group">
                                 <label for="question-entry-options-topic-id" class="text-uppercase">*Select Topic <i class="fa fa-info-circle ml-3"></i> </label>
-                                <select name="subject_topic_id" id="question-entry-options-topic-id" class="form-control">
+                                <select
+                                    name="subject_topic_id"
+                                    id="question-entry-options-topic-id"
+                                    class="form-control">
                                     <option value="0">Select Topic</option>
                                     <option class="text-bold" value="add-topic">Add Topic</option>
                                 </select>
@@ -302,8 +305,8 @@
 
         // load the subject topics via ajax
         function getSubjectTopics(subject_id) {
-            $.get(window.location.origin + '/admin/subjects/' + subject_id + '/subject-topics/index', function(response){
-                if (response && response.type !== undefined) {
+            $.get(window.location.origin + '/admin/subjects/' + subject_id + '/topics/index', function(response, statusCode, xhr){
+                if (xhr.status === 200 && response.type !== undefined) {
                     if (response.data.length > 0) {
                         response.data.forEach(function(topic){
                             var new_topic = document.createElement("OPTION");
@@ -314,7 +317,9 @@
                         });
                     }
                 }
-            })
+            }).fail(function (jqXHR){
+                toastr.error('Response code:' + jqXHR.status);
+            });
         }
 
         function checkIfSubjectIdExists() {
