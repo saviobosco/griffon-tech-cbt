@@ -196,7 +196,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin.candidate_groups.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Group</p>
                             </a>

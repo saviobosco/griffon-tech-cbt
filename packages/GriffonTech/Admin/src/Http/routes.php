@@ -183,7 +183,7 @@ Route::group(['middleware' => ['web']], function() {
                 ->name('quiz_questions.delete');
 
 
-            // Tests its uses the TestsController in the Test Namespace.
+            // Tests it uses the TestsController in the Test Namespace.
             // and view files in the admin view namespace.
             Route::get('/tests/index', 'GriffonTech\Test\Http\Controllers\TestsController@index')
                 ->defaults('_config', ['view' => 'admin::admin.tests.index'])
@@ -283,6 +283,59 @@ Route::group(['middleware' => ['web']], function() {
             Route::delete('/products/delete/{product}', 'GriffonTech\Product\Http\Controllers\ProductsController@destroy')
                 ->defaults('_config', ['redirect' => 'admin.products.index'])
                 ->name('admin.products.delete');
+
+
+            /** Candidate Groups */
+            Route::get('/candidate-groups/index', 'GriffonTech\Admin\Http\Controllers\CandidateGroupsController@index')
+                ->defaults('_config', ['view' => 'admin::admin.candidate_groups.index'])
+                ->name('admin.candidate_groups.index');
+
+            Route::get('/candidate-groups/create', 'GriffonTech\Admin\Http\Controllers\CandidateGroupsController@create')
+                ->defaults('_config', ['view' => 'admin::admin.candidate_groups.create'])
+                ->name('admin.candidate_groups.create');
+
+            Route::post('/candidate-groups/create', 'GriffonTech\Admin\Http\Controllers\CandidateGroupsController@store')
+                ->defaults('_config', ['redirect' => 'admin.candidate_groups.index'])
+                ->name('admin.candidate_groups.store');
+
+            Route::get('/candidate-groups/edit/{group}', 'GriffonTech\Admin\Http\Controllers\CandidateGroupsController@edit')
+                ->defaults('_config', ['view' => 'admin::admin.candidate_groups.edit'])
+                ->name('admin.candidate_groups.edit');
+
+            Route::post('/candidate-groups/edit/{group}', 'GriffonTech\Admin\Http\Controllers\CandidateGroupsController@update')
+                ->defaults('_config', ['redirect' => 'admin.candidate_groups.index'])
+                ->name('admin.candidate_groups.update');
+
+            Route::delete('/candidate-groups/delete/{group}', 'GriffonTech\Admin\Http\Controllers\CandidateGroupsController@destroy')
+                ->defaults('_config', ['redirect' => 'admin.candidate_groups.index'])
+                ->name('admin.candidate_groups.delete');
+
+
+            /** Candidates Admin Routes */
+            Route::get('/candidates/index', 'GriffonTech\Admin\Http\Controllers\CandidatesController@index')
+                ->defaults('_config', ['view' => 'admin::admin.candidates.index'])
+                ->name('admin.candidates.index');
+
+            Route::get('/candidates/create', 'GriffonTech\Admin\Http\Controllers\CandidatesController@create')
+                ->defaults('_config', ['view' => 'admin::admin.candidates.create'])
+                ->name('admin.candidates.create');
+
+            Route::post('/candidates/create', 'GriffonTech\Admin\Http\Controllers\CandidatesController@store')
+                ->defaults('_config', ['redirect' => 'admin.candidates.index'])
+                ->name('admin.candidates.store');
+
+            Route::get('/candidates/edit/{group}', 'GriffonTech\Admin\Http\Controllers\CandidatesController@edit')
+                ->defaults('_config', ['view' => 'admin::admin.candidates.edit'])
+                ->name('admin.candidates.edit');
+
+            Route::post('/candidates/edit/{group}', 'GriffonTech\Admin\Http\Controllers\CandidatesController@update')
+                ->defaults('_config', ['redirect' => 'admin.candidates.index'])
+                ->name('admin.candidates.update');
+
+            Route::delete('/candidates/delete/{group}', 'GriffonTech\Admin\Http\Controllers\CandidatesController@destroy')
+                ->defaults('_config', ['redirect' => 'admin.candidates.index'])
+                ->name('admin.candidates.delete');
+
         });
 
     });
