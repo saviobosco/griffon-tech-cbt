@@ -14,7 +14,7 @@
                 <!-- small box -->
                 <div class="small-box bg-white">
                     <div class="inner">
-                        <h3>150</h3>
+                        <h3>{{ number_format($total_candidates) }}</h3>
 
                         <p>Total Candidates</p>
                     </div>
@@ -29,7 +29,7 @@
                 <!-- small box -->
                 <div class="small-box bg-white">
                     <div class="inner">
-                        <h3>53</h3>
+                        <h3> {{ number_format($total_questions) }}</h3>
 
                         <p>Total Questions</p>
                     </div>
@@ -44,7 +44,7 @@
                 <!-- small box -->
                 <div class="small-box bg-white">
                     <div class="inner">
-                        <h3>44</h3>
+                        <h3>{{ number_format($total_tests) }}</h3>
 
                         <p>Total Tests</p>
                     </div>
@@ -59,14 +59,14 @@
                 <!-- small box -->
                 <div class="small-box bg-white">
                     <div class="inner">
-                        <h3>65</h3>
+                        <h3>{{ number_format($total_products) }}</h3>
 
                         <p>Total Products</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-shopping-cart"></i>
                     </div>
-                    <a href="#" class="small-box-footer"><i class="fas fa-plus"></i> Add New Product</a>
+                    <a href="{{ route('admin.products.create') }}" class="small-box-footer"><i class="fas fa-plus"></i> Add New Product</a>
                 </div>
             </div>
             <!-- ./col -->
