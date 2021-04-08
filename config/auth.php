@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'candidates',
     ],
 
     /*
@@ -38,13 +38,12 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'candidates',
         ],
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -77,6 +76,10 @@ return [
             'driver' => 'eloquent',
             'model' => \GriffonTech\Admin\Models\Admin::class,
         ],
+        'candidates' => [
+            'driver' => 'eloquent',
+            'model' => \GriffonTech\Candidate\Models\Candidate::class
+        ]
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -109,6 +112,11 @@ return [
             'table' => 'admin_password_resets',
             'expire' => 60,
         ],
+        'candidates' => [
+            'provider' => 'candidates',
+            'table' => 'password_resets',
+            'expires' => 60
+        ]
     ],
 
 ];

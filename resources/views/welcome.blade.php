@@ -20,8 +20,8 @@
                     <li> <a href="#">Pricing</a> </li>
                     <li> <a href="#">Clients</a> </li>
                     <li><a href="#">Request demo </a></li>
-                    <li><a href="">Log in</a></li>
-                    <li> <a href="">Sign up</a> </li>
+                    <li><a href="{{ route('candidate.login.index') }}">Log in</a></li>
+                    <li> <a href="{{ route('candidate.register.index') }}">Sign up</a> </li>
                 </ul>
             </nav>
         </div>

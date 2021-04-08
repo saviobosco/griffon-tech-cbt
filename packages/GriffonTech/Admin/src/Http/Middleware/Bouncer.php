@@ -27,6 +27,8 @@ class Bouncer
         return $next($request);
     }
 
+
+
     /*public function checkIfAuthorized($request)
     {
         if (! $role = auth()->guard('admin')->user()->role)

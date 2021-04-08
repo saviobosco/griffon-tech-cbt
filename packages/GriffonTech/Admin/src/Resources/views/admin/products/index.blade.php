@@ -10,7 +10,7 @@
                     <div class="col-9">
                         <form action="" class="form-inline">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter Test Name">
+                                <input type="text" class="form-control" placeholder="Enter Product Name">
                             </div>
                             <div class="form-group ml-4">
                                 <button class="btn btn-primary"> Search </button>
@@ -28,7 +28,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tests</h3>
+                        <h3 class="card-title">Products</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0" style="height: 100%;">
@@ -36,22 +36,24 @@
                             <thead>
                             <tr>
                                 <th>S.No</th>
-                                <th>Test Name</th>
-                                <th>Total Questions</th>
-                                <th>Difficulty Level</th>
-                                <th>Associated Product</th>
-                                <th>Test Category</th>
+                                <th>Product Name</th>
+                                <th>Product Type</th>
+                                <th>Product Cost</th>
+                                <th>No of Test</th>
+                                <th>Publish Date</th>
+                                <th>Expiry Date</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="text-center">
+                            <tr>
                                 <td>1</td>
                                 <td>Recruitment Test</td>
-                                <td>20</td>
-                                <td>Normal</td>
-                                <td>-</td>
-                                <td>All Tests</td>
+                                <td>Test series</td>
+                                <td>2000</td>
+                                <td>3</td>
+                                <td>02/04/2021</td>
+                                <td>15/04/2021</td>
                                 <td>
                                     <a data-toggle="dropdown" href="#" aria-expanded="false" style="position: relative">
                                         <i class="fa fa-bars"></i>

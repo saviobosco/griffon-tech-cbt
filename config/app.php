@@ -176,7 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         \GriffonTech\Admin\Providers\AdminServiceProvider::class,
         \GriffonTech\Quiz\Providers\QuizServiceProvider::class,
-        \GriffonTech\User\Providers\UserServiceProvider::class
+        \GriffonTech\User\Providers\UserServiceProvider::class,
+        \GriffonTech\Candidate\Providers\CandidateServiceProvider::class
     ],
 
     /*
