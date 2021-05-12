@@ -19,8 +19,8 @@ class CreateQuizSessionsTable extends Migration
             $table->unsignedInteger('quiz_id');
             $table->string('subjects_ids');
             $table->string('question_ids');
-            $table->timestamp('start_time');
-            $table->timestamp('end_start');
+            $table->timestamp('start_time')->nullable();
+            $table->timestamp('end_time')->nullable();
             $table->string('attempted_ip')->nullable();
             $table->string('photo')->nullable();
             $table->float('total_score')->nullable()->default(0);
