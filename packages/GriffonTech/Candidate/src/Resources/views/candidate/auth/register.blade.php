@@ -9,7 +9,7 @@
         <div class="registration-form-holder">
             <div>
                 <h1>Sign up to get started </h1>
-                <p> Get unlimited access to our computer based platform </p>
+                <p> Get unlimited access to our computer based test platform </p>
             </div>
 
             <form action="{{ route('candidate.register.store') }}" method="POST">

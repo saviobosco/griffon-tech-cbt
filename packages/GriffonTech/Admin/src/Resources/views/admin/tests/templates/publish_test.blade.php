@@ -206,8 +206,9 @@
 
 
         // time picker
-        $('#start-time-picker, #end-time-picker, #fix-end-time-picker, #max-submit-time-picker').datetimepicker({
-            format: 'hh:mm:ss'
+        $('#start-time-picker, #end-time-picker, #fix-end-time-picker, #max-submit-time-picker')
+            .datetimepicker({
+            format: 'HH:mm'
         });
 
 

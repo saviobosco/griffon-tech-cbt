@@ -185,6 +185,7 @@ Route::group(['middleware' => ['web']], function() {
 
             // Tests it uses the TestsController in the Test Namespace.
             // and view files in the admin view namespace.
+
             Route::get('/tests/index', 'GriffonTech\Test\Http\Controllers\TestsController@index')
                 ->defaults('_config', ['view' => 'admin::admin.tests.index'])
                 ->name('admin.tests.index');
@@ -215,6 +216,18 @@ Route::group(['middleware' => ['web']], function() {
 
             Route::get('/tests/get-step/{test}', 'GriffonTech\Test\Http\Controllers\TestsController@getStepTemplate')->defaults('_config', [
             ])->name('admin.test.get_step_template');
+
+
+            // Test Results
+            Route::get('/test-results/index', 'GriffonTech\Admin\Http\Controllers\TestResultsController@index')
+                ->defaults('_config', ['view' => 'admin::admin.test_results.index'])
+                ->name('admin.test_results.index');
+
+            Route::get('/test-results/view/{testSession}', 'GriffonTech\Admin\Http\Controllers\TestResultsController@show')
+                ->defaults('_config', ['view' => 'admin::admin.test_results.view'])
+                ->name('admin.test_results.view');
+
+
 
 
             // Test Questions
@@ -256,6 +269,32 @@ Route::group(['middleware' => ['web']], function() {
             Route::delete('/test-categories/delete/{testCategory}', 'GriffonTech\Test\Http\Controllers\TestCategoriesController@destroy')
                 ->defaults('_config', ['redirect' => 'admin.test_categories.index'])
                 ->name('admin.test_categories.delete');
+
+
+            //Test Instructions
+            Route::get('/test-instructions/index', 'GriffonTech\Test\Http\Controllers\TestInstructionsController@index')
+                ->defaults('_config', ['view' => 'admin::admin.test_instructions.index'])
+                ->name('admin.test_instructions.index');
+
+            Route::get('/test-instructions/create', 'GriffonTech\Test\Http\Controllers\TestInstructionsController@create')
+                ->defaults('_config', ['view' => 'admin::admin.test_instructions.create'])
+                ->name('admin.test_instructions.create');
+
+            Route::post('/test-instructions/create', 'GriffonTech\Test\Http\Controllers\TestInstructionsController@store')
+                ->defaults('_config', ['redirect' => 'admin.test_instructions.index'])
+                ->name('admin.test_instructions.store');
+
+            Route::get('/test-instructions/edit/{testInstruction}', 'GriffonTech\Test\Http\Controllers\TestInstructionsController@edit')
+                ->defaults('_config', ['view' => 'admin::admin.test_instructions.edit'])
+                ->name('admin.test_instructions.edit');
+
+            Route::post('/test-instructions/edit/{testInstruction}', 'GriffonTech\Test\Http\Controllers\TestInstructionsController@update')
+                ->defaults('_config', ['redirect' => 'admin.test_instructions.index'])
+                ->name('admin.test_instructions.update');
+
+            Route::delete('/test-instructions/delete/{testInstruction}', 'GriffonTech\Test\Http\Controllers\TestInstructionsController@destroy')
+                ->defaults('_config', ['redirect' => 'admin.test_instructions.index'])
+                ->name('admin.test_instructions.delete');
 
 
 
@@ -324,15 +363,15 @@ Route::group(['middleware' => ['web']], function() {
                 ->defaults('_config', ['redirect' => 'admin.candidates.index'])
                 ->name('admin.candidates.store');
 
-            Route::get('/candidates/edit/{group}', 'GriffonTech\Admin\Http\Controllers\CandidatesController@edit')
+            Route::get('/candidates/edit/{candidate}', 'GriffonTech\Admin\Http\Controllers\CandidatesController@edit')
                 ->defaults('_config', ['view' => 'admin::admin.candidates.edit'])
                 ->name('admin.candidates.edit');
 
-            Route::post('/candidates/edit/{group}', 'GriffonTech\Admin\Http\Controllers\CandidatesController@update')
+            Route::post('/candidates/edit/{candidate}', 'GriffonTech\Admin\Http\Controllers\CandidatesController@update')
                 ->defaults('_config', ['redirect' => 'admin.candidates.index'])
                 ->name('admin.candidates.update');
 
-            Route::delete('/candidates/delete/{group}', 'GriffonTech\Admin\Http\Controllers\CandidatesController@destroy')
+            Route::delete('/candidates/delete/{candidate}', 'GriffonTech\Admin\Http\Controllers\CandidatesController@destroy')
                 ->defaults('_config', ['redirect' => 'admin.candidates.index'])
                 ->name('admin.candidates.delete');
 

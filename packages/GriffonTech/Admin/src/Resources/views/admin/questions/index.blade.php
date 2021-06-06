@@ -90,8 +90,8 @@
                                         <td>{{ $question->id }}</td>
                                         <td>{{ (isset($question->subject)) ? $question->subject->name : " " }}</td>
                                         <td>{{ (isset($question->topic)) ? $question->topic->topic : " " }}</td>
-                                        <td>{{ $question->question }}</td>
-                                        <td>{{ $question->difficulty_level }}</td>
+                                        <td>{!! $question->question !!}</td>
+                                        <td>{{ ucfirst($question->difficulty_level) }}</td>
                                         <td>{{ $question->type }}</td>
                                         <td>{{ $question->created_at->format('d-m-Y') }}</td>
                                         <td>

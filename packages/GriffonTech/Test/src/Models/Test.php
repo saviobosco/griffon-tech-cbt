@@ -55,8 +55,25 @@ class Test extends Model implements TestContract
         'unique_code'
     ];
 
+    protected $casts = [
+        'start_date' => 'date',
+        'end_date' => 'date',
+    ];
+
     public function test_category()
     {
         return $this->belongsTo(TestCategoryProxy::modelClass(), 'test_category_id', 'id');
+    }
+
+
+    public function test_instruction()
+    {
+        return $this->belongsTo(TestInstructionProxy::modelClass(), 'test_instruction_id', 'id');
+    }
+
+
+    public function questions()
+    {
+        return $this->hasMany(TestQuestionProxy::modelClass(), 'test_id', 'id');
     }
 }

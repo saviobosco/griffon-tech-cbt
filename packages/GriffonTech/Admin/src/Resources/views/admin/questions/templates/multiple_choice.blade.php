@@ -3,7 +3,7 @@
 
 <div class="form-group required">
     <label for="question">Type Your Question <i class="fa fa-info-circle"></i> </label>
-    <textarea id="question" name="question" class="form-control" cols="30" rows="5"></textarea>
+    <textarea id="question" name="question" class="form-control textarea" cols="30" rows="5"></textarea>
 </div>
 
 <div>
@@ -222,4 +222,10 @@
         });
     });
 
+    $(function () {
+        // Summernote
+        $('.textarea').summernote({
+            height: 150
+        });
+    });
 </script>

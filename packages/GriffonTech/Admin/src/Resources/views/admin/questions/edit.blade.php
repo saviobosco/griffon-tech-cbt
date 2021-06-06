@@ -58,7 +58,7 @@
 
                             <div class="form-group">
                                 <label for="question"> Question </label>
-                                {!! Form::textarea('question', null, ['class' => 'form-control', 'cols' => 30, 'rows' => 4]) !!}
+                                {!! Form::textarea('question', null, ['class' => 'form-control textarea', 'cols' => 30, 'rows' => 4]) !!}
                             </div>
 
                             {!! Form::hidden('type',null,['id' => 'question-type']) !!}
@@ -91,7 +91,7 @@
                                                 </div>
                                                 <div class="col-sm-10">
                                                     <input type="hidden" name="option_answer[{{$index}}][id]" value="{{$option['id']}}">
-                                                    <textarea id="option_answer_text_{{$index}}" name="option_answer[{{$index}}][text]" class="form-control" cols="30" rows="2">{{$option['option']}}</textarea>
+                                                    <textarea id="option_answer_text_{{$index}}" name="option_answer[{{$index}}][text]" class="form-control textarea-option" cols="30" rows="2">{{$option['option']}}</textarea>
                                                     @if ($index > 3)
                                                         <button class="remove-option-from-db" data-id="{{$option['id']}}"> <i class="fa fa-trash-alt text-danger"></i> </button>
                                                     @endif
@@ -409,5 +409,18 @@
                 next_letter_index++;
             }
         }
+    </script>
+
+    <script>
+        $(function () {
+            // Summernote
+            $('.textarea').summernote({
+                height: 150
+            });
+
+            /*$('.textarea-option').summernote({
+                height: 50
+            });*/
+        })
     </script>
 @endsection

@@ -101,9 +101,9 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('quiz_results.index') }}" class="nav-link">
+                            <a href="{{ route('admin.test_results.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Quiz Results</p>
+                                <p>Test Results</p>
                             </a>
                         </li>
 
@@ -118,6 +118,12 @@
                             <a href="{{ route('admin.test_categories.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Test Category</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.test_instructions.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Test Instructions</p>
                             </a>
                         </li>
                     </ul>

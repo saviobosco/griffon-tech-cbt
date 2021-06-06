@@ -1,7 +1,7 @@
 @extends('candidate::layouts.master')
 
 @section('page_title')
-    Jamb Sample 1
+    {{ $test->name }}
 @stop
 
 
@@ -12,80 +12,50 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Jamb Sample 1</h3>
+                        <h3 class="card-title">{{ $test->name }}</h3>
                     </div>
                     <!-- /.card-header -->
 
                     <div class="card-body">
                         <p>
-                            <i class="fa fa-calendar-alt"></i> Start Date: 21/03/2021
+                            <i class="fa fa-calendar-alt"></i> Start Date: {{ $test->start_date->format('d-m-Y') }}
                         </p>
                         <p>
-                            <i class="fa fa-calendar-alt"></i> End Date: 22-03-2021
+                            <i class="fa fa-calendar-alt"></i> End Date: {{ $test->end_date->format('d-m-Y') }}
                         </p>
                         <p>
-                            <i class="fa fa-clock"></i> Time: 21:00:00 to 22:00:00
+                            <i class="fa fa-clock"></i> Time: {{ $test->start_time }} to {{ $test->end_time }}
                         </p>
                         <p>
-                            <i class="fa fa-clock"></i> Duration: 20 Minutes
+                            <i class="fa fa-clock"></i> Duration: {{ $test->duration }} Minutes
                         </p>
                         <p>
-                            <strong>No of Questions</strong>: 10
+                            <strong>No of Questions</strong>: {{ $test->total_question }}
                         </p>
                         <p>
-                            <strong>Total Score</strong>: 80
+                            <strong>Total Score</strong>: {{ $test->total_mark }}
                         </p>
                         <p>
-                            <strong>Difficulty Level</strong>: Normal
+                            <strong>Difficulty Level</strong>: {{ ucfirst($test->difficulty_level) }}
                         </p>
 
                         <div>
                             <h3 class="text-center"> Test Instruction</h3>
                             <div style="overflow: auto;
-                            max-height: 15rem;
+                            max-height: 20rem;
                              margin-bottom: 2rem;
                               background-color: #f4f6f9;
                                padding: 1rem;
                                 border: 1px solid rgba(0, 0, 0, 0.125);">
-                                <p>This test contains the details to the next level</p>
-                                <p>
-                                    This are the instructions.
-                                </p>
-                                <ol>
-                                    <li> Hello world</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                    <li> Yes oo</li>
-                                </ol>
+                                @if ($test->test_instruction)
+                                    {!! $test->test_instruction->instruction !!}
+                                @else
+                                    <p class="text-center">No Instruction!</p>
+                                @endif
                             </div>
                         </div>
 
-                        {!! Form::open() !!}
+                        {!! Form::open(['route'=> ['candidate.tests.start', $test->id]]) !!}
                             <div>
                                 <label for="instruction_agreement">
                                     <input type="checkbox" name="instruction_agreement" value="1" id="instruction_agreement" required>
@@ -93,7 +63,7 @@
                                 </label>
                             </div>
                             <div>
-                                {!! Form::button('Start Test', ['class' => 'float-right btn btn-success']) !!}
+                                {!! Form::submit('Start Test', ['class' => 'float-right btn btn-success']) !!}
                             </div>
                         {!! Form::close() !!}
 

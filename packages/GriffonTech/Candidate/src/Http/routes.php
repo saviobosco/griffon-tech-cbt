@@ -42,22 +42,37 @@ Route::group(['middleware' => ['web']], function(){
                 'view' => 'candidate::candidate.tests.index'
             ])->name('candidate.tests.index');
 
-            Route::get('tests/view/{testa}', 'GriffonTech\Candidate\Http\Controllers\TestsController@show')->defaults('_config', [
+            Route::get('tests/view/{test}', 'GriffonTech\Candidate\Http\Controllers\TestsController@show')->defaults('_config', [
                 'view' => 'candidate::candidate.tests.show'
             ])->name('candidate.tests.view');
 
-            Route::post('tests/start/{testa}', 'GriffonTech\Candidate\Http\Controllers\TestsController@start')->defaults('_config', [
+            Route::post('tests/start/{test}', 'GriffonTech\Candidate\Http\Controllers\TestsController@start')->defaults('_config', [
                 'redirect' => 'candidate.tests.show'
             ])->name('candidate.tests.start');
 
 
             /** My Test Sessions */
 
-            Route::get('test-sessions/in-progress/{testSession}', 'GriffonTech\Candidate\Http\Controllers\TestsController@inProgress')
+            Route::get('test-sessions/in-progress/{testSession}', 'GriffonTech\Candidate\Http\Controllers\TestSessionsController@inProgress')
                 ->defaults('_config', [
                 'view' => 'candidate::candidate.test_sessions.in_progress'
             ])->name('candidate.test_sessions.in_progress');
 
+
+            Route::post('test-sessions/save-answer/{testSession}', 'GriffonTech\Candidate\Http\Controllers\TestSessionsController@saveAnswer')
+                ->defaults('_config', [
+                    'view' => 'candidate::candidate.test_sessions.in_progress'
+                ])->name('candidate.test_sessions.save_answer');
+
+            Route::post('test-sessions/submit/{testSession}', 'GriffonTech\Candidate\Http\Controllers\TestSessionsController@submitTest')
+                ->defaults('_config', [
+                    'redirect' => ''
+                ])->name('candidate.test_sessions.submit_test');
+
+            Route::get('test-reports/show/{testSession}', 'GriffonTech\Candidate\Http\Controllers\TestSessionsController@showReport')
+                ->defaults('_config', [
+                    'view' => 'candidate::candidate.test_reports.show_report'
+                ])->name('candidate.test_reports.show_report');
 
 
             /** My Test Reports */

@@ -80,16 +80,16 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <i class="fas fa-chart-pie mr-1"></i>
-                            User Registration
+                            <i class="fas fa-chart-line mr-1"></i>
+                            Candidates Registration
                         </h3>
                         <div class="card-tools">
                             <ul class="nav nav-pills ml-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+                                    <a class="nav-link active" href="#daily-reg-chart" data-toggle="tab">Daily</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+                                    <a class="nav-link" href="#monthly-reg-chart" data-toggle="tab">Monthly</a>
                                 </li>
                             </ul>
                         </div>
@@ -97,12 +97,12 @@
                     <div class="card-body">
                         <div class="tab-content p-0">
                             <!-- Morris chart - Sales -->
-                            <div class="chart tab-pane active" id="revenue-chart"
+                            <div class="chart tab-pane active" id="daily-reg-chart"
                                  style="position: relative; height: 300px;">
-                                <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
+                                <canvas id="daily-registration-chart-canvas" height="300" style="height: 300px;"></canvas>
                             </div>
-                            <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                                <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
+                            <div class="chart tab-pane" id="monthly-reg-chart" style="position: relative; height: 300px;">
+                                <canvas id="monthly-registration-chart-canvas" height="300" style="height: 300px;"></canvas>
                             </div>
                         </div>
                     </div><!-- /.card-body -->
@@ -115,30 +115,30 @@
             <section class="col-lg-5 connectedSortable">
 
                 <!-- solid sales graph -->
-                <div class="card bg-gradient-info">
-                    <div class="card-header border-0">
+                <div class="card">
+                    <div class="card-header">
                         <h3 class="card-title">
                             <i class="fas fa-th mr-1"></i>
                             Users Test Rate
                         </h3>
 
                         <div class="card-tools">
-                            <button type="button" class="btn bg-info btn-sm" data-card-widget="collapse">
+                            <button type="button" class="btn bg-success btn-sm" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
                             </button>
-                            <button type="button" class="btn bg-info btn-sm" data-card-widget="remove">
+                            <button type="button" class="btn bg-success btn-sm" data-card-widget="remove">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
                     </div>
                     <div class="card-body">
-                        <canvas class="chart" id="line-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        <canvas class="chart" id="test-bar-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                     </div>
                 </div>
                 <!-- /.card -->
 
                 <!-- Calendar -->
-                <div class="card bg-gradient-success">
+                <div class="card">
                     <div class="card-header border-0">
 
                         <h3 class="card-title">
@@ -181,4 +181,153 @@
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
 
+@endsection
+
+@section('footer-script')
+    <script>
+
+        var days_ranges = {!! $days_ranges !!};
+        var days_reg_count = {!! $real_days !!};
+
+        var month_ranges = {!! $month_ranges !!};
+        var months_reg_count = {!! $real_months !!};
+
+        var test_ranges = {!! $test_ranges !!};
+        var test_counts = {!! $test_session_counts !!};
+
+
+
+        var areaChartOptions = {
+            maintainAspectRatio : false,
+            responsive : true,
+            legend: {
+                display: false
+            },
+            scales: {
+                xAxes: [{
+                    gridLines : {
+                        display : true,
+                    }
+                }],
+                yAxes: [{
+                    gridLines : {
+                        display : true,
+                    }
+                }]
+            }
+        }
+
+        var areaChartData = {
+            labels  : days_ranges,
+            datasets: [
+                {
+                    label               : 'Candidate Registrations',
+                    backgroundColor     : 'rgba(60,141,188,0.9)',
+                    borderColor         : 'rgba(60,141,188,0.8)',
+                    pointRadius          : false,
+                    pointColor          : '#3b8bba',
+                    pointStrokeColor    : 'rgba(60,141,188,1)',
+                    pointHighlightFill  : '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data                : days_reg_count
+                },
+                /*{
+                    label               : 'Electronics',
+                    backgroundColor     : 'rgba(210, 214, 222, 1)',
+                    borderColor         : 'rgba(210, 214, 222, 1)',
+                    pointRadius         : false,
+                    pointColor          : 'rgba(210, 214, 222, 1)',
+                    pointStrokeColor    : '#c1c7d1',
+                    pointHighlightFill  : '#fff',
+                    pointHighlightStroke: 'rgba(220,220,220,1)',
+                    data                : [65, 59, 80, 81, 56, 55, 40]
+                },*/
+            ]
+        }
+        var lineChartCanvas = $('#daily-registration-chart-canvas').get(0).getContext('2d')
+        var lineChartOptions = jQuery.extend(true, {}, areaChartOptions)
+        var lineChartData = jQuery.extend(true, {}, areaChartData)
+        lineChartData.datasets[0].fill = false;
+        //lineChartData.datasets[1].fill = false;
+        lineChartOptions.datasetFill = false
+
+        var lineChart = new Chart(lineChartCanvas, {
+            type: 'line',
+            data: lineChartData,
+            options: lineChartOptions
+        });
+
+
+        // monthly registrations
+        var monthlyRegChartData = {
+            labels  : month_ranges,
+            datasets: [
+                {
+                    label               : 'Candidate Registrations',
+                    backgroundColor     : 'rgba(60,141,188,0.9)',
+                    borderColor         : 'rgba(60,141,188,0.8)',
+                    pointRadius          : false,
+                    pointColor          : '#3b8bba',
+                    pointStrokeColor    : 'rgba(60,141,188,1)',
+                    pointHighlightFill  : '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data                : months_reg_count
+                }
+            ]
+        }
+        var lineMonthlyChartCanvas = $('#monthly-registration-chart-canvas').get(0).getContext('2d')
+        var lineMonthlyChartOptions = jQuery.extend(true, {}, areaChartOptions)
+        monthlyRegChartData.datasets[0].fill = false;
+        //lineChartData.datasets[1].fill = false;
+        lineMonthlyChartOptions.datasetFill = false
+
+        var lineMonthlyChart = new Chart(lineMonthlyChartCanvas, {
+            type: 'line',
+            data: monthlyRegChartData,
+            options: lineMonthlyChartOptions
+        });
+
+        // test session bar chart.
+        var testsChartData = {
+            labels  : test_ranges,
+            datasets: [
+                {
+                    label               : 'Test Sessions',
+                    backgroundColor     : 'rgba(60,141,188,0.9)',
+                    borderColor         : 'rgba(60,141,188,0.8)',
+                    pointRadius          : false,
+                    pointColor          : '#3b8bba',
+                    pointStrokeColor    : 'rgba(60,141,188,1)',
+                    pointHighlightFill  : '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data                : test_counts
+                }
+            ]
+        }
+
+        var barChartCanvas = $('#test-bar-chart').get(0).getContext('2d')
+        var barChartData = jQuery.extend(true, {}, testsChartData)
+        //var temp0 = barChartData.datasets[0]
+        //var temp1 = areaChartData.datasets[1]
+        //barChartData.datasets[0] = temp1
+        //barChartData.datasets[0] = temp0
+
+        var barChartOptions = {
+            responsive              : true,
+            maintainAspectRatio     : false,
+            datasetFill             : false
+        }
+
+        var barChart = new Chart(barChartCanvas, {
+            type: 'bar',
+            data: barChartData,
+            options: barChartOptions
+        })
+
+
+        $('#calendar').datetimepicker({
+            format: 'L',
+            inline: true
+        })
+    </script>
 @endsection

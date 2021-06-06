@@ -67,9 +67,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group required">
                                                         <label for="test_instructions">Test Instructions</label>
-                                                        <select name="test_instruction" id="test_instructions" class="form-control">
-                                                            <option value="">Select Instruction</option>
-                                                        </select>
+                                                        {!! Form::select('test_instruction_id', $testInstructions, null, ['class' => 'form-control']) !!}
                                                     </div>
                                                 </div>
                                             </div>

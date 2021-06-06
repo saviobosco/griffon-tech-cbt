@@ -30,12 +30,12 @@
     <div class="main-hero">
         <div class="hero-text-container">
             <h1>Your ultimate destination for online Assessment</h1>
-            <p>Prepare candidates to perform extraodinarily with an easy to use highly interactive platform and
+            <p>Prepare candidates to perform extraordinarily with an easy to use highly interactive platform and
                 simplify the Assessment cycle.
             </p>
 
             <div class="call-for-action">
-                <a class="btn btn-primary btn-special" href="#">Get Started for free </a>
+                <a class="btn btn-primary btn-special" href="{{ route('candidate.register.index') }}">Get Started for free </a>
             </div>
         </div>
 
@@ -272,35 +272,18 @@
         </div>
     </div>
 
-
-{{--<div class="flex-center position-ref full-height">
-    @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-                <a href="{{ url('/home') }}">Home</a>
-            @else
-                <a href="{{ route('login') }}">Login</a>
-
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}">Register</a>
-                @endif
-            @endauth
-        </div>
-    @endif
-
-    <div class="content">
-        <div class="title m-b-md">
-            {{ config('app.name') }}
-        </div>
-
-        <div class="links">
-            <a href="https://laravel.com/docs">Docs</a>
-            <a href="{{ route('admin.login.index') }}">Admin Login</a>
-            <a href="#">News</a>
-            <a href="#">Blog</a>
-            <a href="{{ route('user.quizzes.index') }}"> Free Quizzes </a>
-        </div>
-    </div>
-</div>--}}
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/60a78ac2b1d5182476bb2265/1f677c39u';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
 </body>
 </html>

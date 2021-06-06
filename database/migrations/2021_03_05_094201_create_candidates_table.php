@@ -18,6 +18,7 @@ class CreateCandidatesTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('password');
+            $table->rememberToken();
             $table->enum('gender', ['male', 'female'])->nullable();
             $table->string('enrolment_number')->nullable();
             $table->string('mobile_no')->nullable();

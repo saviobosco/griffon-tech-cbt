@@ -10,7 +10,7 @@
 
             <div>
                 <h1>Welcome Back! </h1>
-                <p>Log in to resume access to our computer based platform </p>
+                <p>Log in to resume access to our computer based test platform </p>
             </div>
             <form action="{{ route('candidate.login.store') }}" method="POST">
                 @csrf

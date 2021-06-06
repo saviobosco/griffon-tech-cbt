@@ -6,6 +6,7 @@ namespace GriffonTech\Test\Http\Controllers;
 
 use GriffonTech\Test\Models\Test;
 use GriffonTech\Test\Repositories\TestCategoryRepository;
+use GriffonTech\Test\Repositories\TestInstructionRepository;
 use GriffonTech\Test\Repositories\TestRepository;
 use Illuminate\Http\Request;
 
@@ -15,15 +16,18 @@ class TestsController extends Controller
     protected $_config;
     protected $testRepository;
     protected $testCategoryRepository;
+    protected $testInstructionRepository;
 
     public function __construct(
         TestRepository $testRepository,
-        TestCategoryRepository $testCategoryRepository
+        TestCategoryRepository $testCategoryRepository,
+        TestInstructionRepository $testInstructionRepository
     )
     {
         $this->_config = request('_config');
         $this->testRepository = $testRepository;
         $this->testCategoryRepository = $testCategoryRepository;
+        $this->testInstructionRepository = $testInstructionRepository;
     }
 
     public function index()
@@ -41,9 +45,11 @@ class TestsController extends Controller
             ->toArray();
 
         $testCategories = ['' => 'Select Category'] + $testCategories;
+        $testInstructions = $this->testInstructionRepository->pluck('name', 'id');
+
 
         return view($this->_config['view'])
-            ->with(compact('testCategories'));
+            ->with(compact('testCategories', 'testInstructions'));
     }
 
     public function store(Request $request)
@@ -51,6 +57,7 @@ class TestsController extends Controller
         $this->validate($request, [
             'name' => 'required|string',
             'test_category_id' => 'required',
+            'test_instruction_id' => 'required',
             'duration' => 'required|numeric',
             'difficulty_level' => 'required',
             'total_question' => 'required|numeric',
@@ -74,17 +81,19 @@ class TestsController extends Controller
         $testCategories = $this->testCategoryRepository
             ->pluck('name', 'id')
             ->toArray();
+        $testInstructions = $this->testInstructionRepository->pluck('name', 'id');
 
         $testCategories = ['' => 'Select Category'] + $testCategories;
 
         return view($this->_config['view'])
-            ->with(compact('test', 'testCategories'));
+            ->with(compact('test', 'testCategories', 'testInstructions'));
     }
 
 
     public function update(Request $request, Test $test)
     {
         $updated = $test->update($request->input());
+
         if ($updated) {
             if ($request->ajax()) {
                 return response()->json([
@@ -130,6 +139,7 @@ class TestsController extends Controller
             ->toArray();
 
         $testCategories = ['' => 'Select Category'] + $testCategories;
+        $testInstructions = $this->testInstructionRepository->pluck('name', 'id');
 
         $test_type = $request->query('test_step');
         $test_type = str_replace('-', '_', $test_type);
@@ -139,7 +149,7 @@ class TestsController extends Controller
         }
         if (view()->exists("admin::admin.tests.templates.{$test_type}")) {
             return view("admin::admin.tests.templates.{$test_type}")
-                ->with(compact('test', 'testCategories'));
+                ->with(compact('test', 'testCategories', 'testInstructions'));
         }
         return '<p class="text-center"> Invalid Template Selected. </p>';
     }

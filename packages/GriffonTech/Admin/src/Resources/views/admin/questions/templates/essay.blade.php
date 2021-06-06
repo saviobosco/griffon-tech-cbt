@@ -3,7 +3,7 @@
 
 <div class="form-group">
     <label for="">*Enter Essay Title</label>
-    <input type="text" class="form-control">
+    <input type="text" name="question" class="form-control">
 </div>
 
 <div>
@@ -14,7 +14,7 @@
 
 <div class="form-group">
     <label for="question">*Essay Entry Option <i class="fa fa-info-circle"></i> </label>
-    <textarea id="question" name="question" class="form-control" cols="30" rows="5"></textarea>
+    <textarea id="question" name="description" class="form-control" cols="30" rows="5"></textarea>
 </div>
 
 
