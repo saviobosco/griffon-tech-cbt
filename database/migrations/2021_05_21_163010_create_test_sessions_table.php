@@ -19,8 +19,8 @@ class CreateTestSessionsTable extends Migration
             $table->unsignedInteger('test_id');
             $table->string('subject_ids')->nullable();
             $table->string('question_ids')->nullable();
-            $table->timestamp('start_time');
-            $table->timestamp('end_time');
+            $table->timestamp('start_time')->nullable();
+            $table->timestamp('end_time')->nullable();
             $table->string('attempted_ip')->nullable();
             $table->string('individual_time')->nullable();
             $table->double('total_score', 5, 2)->nullable();
