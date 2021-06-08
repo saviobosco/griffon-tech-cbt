@@ -63,11 +63,15 @@ class TestSession extends Model implements TestSessionContract
 
         if ($answers->isNotEmpty()) {
             foreach($answers as $answer) {
-                if (!is_null($answer->score)) {
+                $scoreSum += $answer->score;
+
+                // will write the algorithm to calculate test with essay
+                // later.
+                /*if (!is_null($answer->score)) {
                     $scoreSum += $answer->score;
                 } else {
                     $missingScore = true;
-                }
+                }*/
             }
         }
         $updateData = [
@@ -78,7 +82,6 @@ class TestSession extends Model implements TestSessionContract
         } else {
             $updateData['status'] = 2;
         }
-
         return $this->update($updateData);
     }
 }

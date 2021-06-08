@@ -51,8 +51,8 @@ class DashboardController extends Controller
             ->getModel()->query()
             ->select(DB::raw('count(id) as total_count, DATE_FORMAT(created_at, "%d-%m-%Y") as date'))
             ->whereRaw("(DATE(created_at) BETWEEN '{$begin_date}' AND '{$end_date}')")
-            ->groupBy('created_at')
-            ->orderBy('created_at', 'ASC')
+            ->groupBy('date')
+            ->orderBy('date', 'ASC')
             ->get()
             ->pluck('total_count', 'date')
             ->toArray();
