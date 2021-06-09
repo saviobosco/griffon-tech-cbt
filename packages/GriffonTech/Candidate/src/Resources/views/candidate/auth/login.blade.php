@@ -9,7 +9,7 @@
         <div class="registration-form-holder">
 
             <div>
-                <h1>Welcome Back! </h1>
+                <h1>Welcome Back!</h1>
                 <p>Log in to resume access to our computer based test platform </p>
             </div>
             <form action="{{ route('candidate.login.store') }}" method="POST">
@@ -46,6 +46,9 @@
         </div>
         <div class="registration-sidebar">
             <div>
+                <a href="/">
+                    <img src="{{ asset('/front-end/images/logo_200x200.png') }}" alt="{{ config('app.name') }} Logo">
+                </a>
                 <h2> Don’t have an account yet? </h2>
                 <p> Get unlimited access to our computer based platform </p>
                 <a class="btn btn-primary btn-wide" href="{{ route('candidate.register.index') }}"> Sign Up </a>

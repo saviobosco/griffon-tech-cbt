@@ -74,6 +74,9 @@
         </div>
         <div class="registration-sidebar">
             <div>
+                <a href="/">
+                    <img src="{{ asset('/front-end/images/logo_200x200.png') }}" alt="{{ config('app.name') }} Logo">
+                </a>
                 <h2> Already have an Account ?</h2>
                 <p>Welcome back! Sign in with your credentials </p>
                 <a class="btn btn-primary btn-wide" href="{{ route('candidate.login.index') }}"> Login </a>
