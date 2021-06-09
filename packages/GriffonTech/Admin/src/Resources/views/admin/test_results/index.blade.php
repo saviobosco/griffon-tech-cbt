@@ -14,15 +14,19 @@
                             <div class="form-group mr-4">
                                 <select name="" id="" class="form-control">
                                     <option value="">Select Filter</option>
-                                    <option value="">Candidate Name</option>
-                                    <option value="">E-mail</option>
-                                    <option value="">Reg-Date</option>
-                                    <option value="">Status</option>
-                                    <option value="">Mobile No.</option>
+                                    <option value="">Test Name</option>
+                                    <option value="">Date Taken</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group ml-3">
+                                <select name="" id="" class="form-control">
+                                    <option value="">Completed</option>
+                                    <option value="">Pending</option>
+                                    <option value="">Active</option>
+                                </select>
                             </div>
                             <div class="form-group ml-4">
                                 <button class="btn btn-primary"> Search </button>

@@ -7,6 +7,7 @@ namespace GriffonTech\Admin\Http\Controllers;
 use GriffonTech\Question\Repositories\QuestionRepository;
 use GriffonTech\Test\Models\TestSession;
 use GriffonTech\Test\Repositories\TestSessionRepository;
+use Illuminate\Support\Facades\DB;
 
 class TestResultsController extends Controller
 {
@@ -53,4 +54,29 @@ class TestResultsController extends Controller
                 'questions',
                 'testSessionAnswers'));
     }
+
+    public function reProcessResult(TestSession $testSession)
+    {
+        $testSession->submit();
+
+        session()->flash('success', 'Test result was successfully re calculated.');
+        return back();
+    }
+
+    public function destroy(TestSession $testSession)
+    {
+        try {
+            DB::beginTransaction();
+            $testSession->delete();
+            $testSession->test_session_answers()->delete();
+            DB::commit();
+            session()->flash('success', 'Test result was successfully deleted.');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            session()->flash('error', "An error occurred. Could not delete the test result. Please report to the technical team.");
+        }
+        return redirect()
+            ->route($this->_config['redirect']);
+    }
+
 }

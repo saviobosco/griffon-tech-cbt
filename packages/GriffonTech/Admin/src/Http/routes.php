@@ -227,6 +227,13 @@ Route::group(['middleware' => ['web']], function() {
                 ->defaults('_config', ['view' => 'admin::admin.test_results.view'])
                 ->name('admin.test_results.view');
 
+            Route::post('/test-results/re-process-result/{testSession}', 'GriffonTech\Admin\Http\Controllers\TestResultsController@reProcessResult')
+                ->defaults('_config', ['redirect' => ''])
+                ->name('admin.test_results.re_process_result');
+
+            Route::delete('/test-results/delete/{testSession}', 'GriffonTech\Admin\Http\Controllers\TestResultsController@destroy')
+                ->defaults('_config', ['redirect' => 'admin.test_results.index'])
+                ->name('admin.test_results.delete');
 
 
 

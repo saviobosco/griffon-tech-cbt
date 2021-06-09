@@ -77,7 +77,7 @@ class TestSession extends Model implements TestSessionContract
         $updateData = [
             'total_score' => $scoreSum
         ];
-        if ($missingScore) {
+        if (!$missingScore) {
             $updateData['status'] = 3;
         } else {
             $updateData['status'] = 2;

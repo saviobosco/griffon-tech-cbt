@@ -13,10 +13,22 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"> {{ ($testSession->test) ? $testSession->test->name .'('. $testSession->test->test_category->name .')' : 'Test Session :'. $testSession->id }}</h3>
+                        <h3 class="card-title"> {{ ($testSession->test) ? $testSession->test->name .' ('. $testSession->test->test_category->name .')' : 'Test Session :'. $testSession->id }}</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <div>
+                            <a href="" class="btn btn-danger float-right"
+                            onclick="event.preventDefault(); if (confirm('Are you sure? This operation is irreversible.')) {
+                                document.getElementById('delete-test-result-{{$testSession->id}}').submit();
+                            }">
+                                Delete Result
+                            </a>
+                            <form id="delete-test-result-{{$testSession->id}}" action="{{ route('admin.test_results.delete', $testSession->id) }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="_method" value="DELETE">
+                            </form>
+                        </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <p>
@@ -29,7 +41,7 @@
                                     <i class="fa fa-calendar-alt"></i> Session Start Time: {{ $testSession->start_time }}
                                 </p>
                                 <p>
-                                    <i class="fa fa-calendar-alt"></i>Session End Time: {{ $testSession->end_time }}
+                                    <i class="fa fa-calendar-alt"></i> Session End Time: {{ $testSession->end_time }}
                                 </p>
                                 <p>
                                     <i class="fa fa-clock"></i> Time Spent: 40 minutes
@@ -38,7 +50,17 @@
                                     <strong>Score</strong> : {{ $testSession->total_score }}
                                 </p>
                                 <p>
-                                    <strong>Status</strong> : {{ $testSession->status }}
+                                    <strong>Status</strong> :
+                                    @switch($testSession->status)
+                                        @case(1)
+                                            <span class="text-danger">Active</span>
+                                            @break
+                                        @case(2)
+                                            <span class="text-primary">Pending</span>
+                                            @break
+                                        @case(3)
+                                            <span class="text-success">Completed</span>
+                                    @endswitch
                                 </p>
                             </div>
 
@@ -178,13 +200,23 @@
                                     <?php $num++; ?>
                                 @endforeach
 
-                                    <div class="mt-3 questions-number-container">
+                                    <div class="mt-3 questions-number-container mb-5">
                                         <?php  $num = 1; ?>
                                         @foreach($questions as $question)
                                             <button class="btn btn-default btn-sm">{{ $num++ }}</button>
                                         @endforeach
                                     </div>
 
+                                    <a href="" class="btn btn-success"
+                                       onclick=" event.preventDefault();
+                                       if (confirm('This operation will re calculate the test results. Are you sure ?')) {
+                                           document.getElementById('re-process-result-{{$testSession->id}}').submit();
+                                       }"
+                                    >Re-process result</a>
+
+                                    <form id="re-process-result-{{$testSession->id}}" action="{{ route('admin.test_results.re_process_result', $testSession->id) }}" method="POST">
+                                        @csrf
+                                    </form>
                             </div>
                             <!-- /.card-body -->
                         </div>
