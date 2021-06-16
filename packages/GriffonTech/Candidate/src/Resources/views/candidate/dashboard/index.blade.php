@@ -50,7 +50,8 @@
                                                 </p>
 
                                                 @if ($test->end_date)
-                                                    @if ($test->end_date->timestamp > now()->timestamp )
+
+                                                    @if ( (new \Carbon\Carbon($test->end_date->format('d-m-Y').' '.$test->end_time))->timestamp > now()->timestamp )
                                                         <div>
                                                             <a class="btn btn-primary float-right" href="{{ route('candidate.tests.view', $test->id) }}">Start Test</a>
                                                         </div>

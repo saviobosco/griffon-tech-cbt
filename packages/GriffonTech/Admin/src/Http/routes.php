@@ -218,6 +218,7 @@ Route::group(['middleware' => ['web']], function() {
             ])->name('admin.test.get_step_template');
 
 
+
             // Test Results
             Route::get('/test-results/index', 'GriffonTech\Admin\Http\Controllers\TestResultsController@index')
                 ->defaults('_config', ['view' => 'admin::admin.test_results.index'])
@@ -382,6 +383,38 @@ Route::group(['middleware' => ['web']], function() {
                 ->defaults('_config', ['redirect' => 'admin.candidates.index'])
                 ->name('admin.candidates.delete');
 
+
+            // users
+            Route::get('/users/index', 'GriffonTech\Admin\Http\Controllers\AdminsController@index')
+                ->defaults('_config', ['view' => 'admin::admin.admins.index'])
+                ->name('admin.admins.index');
+
+            Route::get('/users/create', 'GriffonTech\Admin\Http\Controllers\AdminsController@create')
+                ->defaults('_config', ['view' => 'admin::admin.admins.create'])
+                ->name('admin.admins.create');
+
+            Route::post('/users/create', 'GriffonTech\Admin\Http\Controllers\AdminsController@store')
+                ->defaults('_config', ['redirect' => 'admin.admins.index'])
+                ->name('admin.admins.store');
+
+            Route::get('/users/edit/{admin}', 'GriffonTech\Admin\Http\Controllers\AdminsController@edit')
+                ->defaults('_config', ['view' => 'admin::admin.admins.edit'])
+                ->name('admin.admins.edit');
+
+
+            Route::post('/users/edit/{admin}', 'GriffonTech\Admin\Http\Controllers\AdminsController@update')
+                ->defaults('_config', ['redirect' => 'admin.admins.index'])
+                ->name('admin.admins.update');
+
+
+            Route::get('/users/view/{admin}', 'GriffonTech\Admin\Http\Controllers\AdminsController@show')
+                ->defaults('_config', ['view' => 'admin::admin.admins.view'])
+                ->name('admin.admins.view');
+
+
+            Route::delete('/users/delete/{admin}', 'GriffonTech\Admin\Http\Controllers\AdminsController@destroy')
+                ->defaults('_config', ['redirect' => 'admin.admins.index'])
+                ->name('admin.admins.delete');
         });
 
     });

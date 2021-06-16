@@ -16,7 +16,6 @@ class CreateQuestionTagsTable extends Migration
         Schema::create('question_tags', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tag');
-            $table->timestamps();
         });
     }
 

@@ -16,11 +16,12 @@ class QuestionSaving
     public function __construct(Question $question)
     {
         $this->question = $question;
-
+        //$this->addTags();
     }
 
     public function addTags()
     {
-
+        //$request = request();
+        //dd($request->input());
     }
 }

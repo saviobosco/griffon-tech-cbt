@@ -222,10 +222,10 @@
         });
     });
 
-    $(function () {
+    /*$(function () {
         // Summernote
         $('.textarea').summernote({
             height: 150
         });
-    });
+    });*/
 </script>

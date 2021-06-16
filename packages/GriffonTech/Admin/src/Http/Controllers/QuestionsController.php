@@ -59,18 +59,18 @@ class QuestionsController extends Controller
             'question' => 'required',
         ]);
 
-        if (in_array($request->input('type'), [
+        /*if (in_array($request->input('type'), [
             'multiple_choice',
             'multiple_response',
             'match_the_column',
             'true_or_false'])) {
 
             $request->validate([
-                'right_mark' => 'required',
+                'right_mark' => ,
                 'negative_mark' => 'required',
                 'difficulty_level' => 'required'
             ]);
-        }
+        }*/
 
         $postData = $request->input();
 
@@ -106,6 +106,10 @@ class QuestionsController extends Controller
                 return back()->withInput();
             }
         }
+
+        $postData['right_mark'] = (isset($postData['right_mark']) && !empty($postData['right_mark'])) ? $postData['right_mark'] : 1;
+        $postData['negative_mark'] = (isset($postData['negative_mark']) && !empty($postData['negative_mark'])) ? $postData['negative_mark'] : 1;
+        $postData['difficulty_level'] = (isset($postData['difficulty_level']) && !empty($postData['difficulty_level'])) ? $postData['difficulty_level'] : 'normal';
 
         $question = Question::create($postData);
 
@@ -177,6 +181,7 @@ class QuestionsController extends Controller
                 $question->options()->create($option_data);
             }
 
+            // Save the question tags
             $this->saveTags($question, $request);
 
             session()->flash('success', 'Question was successfully added.');
@@ -185,6 +190,8 @@ class QuestionsController extends Controller
         // process the question submission
     }
 
+    // saving the question tags
+    // move this to the model later.
     protected function saveTags(Question $question, Request $request)
     {
         // add question tags

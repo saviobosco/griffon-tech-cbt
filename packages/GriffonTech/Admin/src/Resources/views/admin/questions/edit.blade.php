@@ -1,5 +1,8 @@
 @extends('admin::layouts.master')
 
+@section('page_title')
+    Edit Question | {{ $question->id }}
+@endsection
 
 @section('content')
 
@@ -412,15 +415,15 @@
     </script>
 
     <script>
-        $(function () {
+        /*$(function () {
             // Summernote
             $('.textarea').summernote({
                 height: 150
             });
 
-            /*$('.textarea-option').summernote({
+            /!*$('.textarea-option').summernote({
                 height: 50
-            });*/
-        })
+            });*!/
+        })*/
     </script>
 @endsection

@@ -13,5 +13,6 @@ class QuestionTag extends Model implements QuestionTagContract
         'tag'
     ];
 
+    public $timestamps = false;
 
 }

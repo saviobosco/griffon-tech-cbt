@@ -26,9 +26,9 @@ class Question extends Model implements QuestionContract
         'negative_mark',
     ];
 
-    protected $dispatchesEvents = [
+    /*protected $dispatchesEvents = [
         'saving' => \GriffonTech\Question\Events\QuestionSaving::class
-    ];
+    ];*/
 
 
     public function subject()
@@ -53,13 +53,15 @@ class Question extends Model implements QuestionContract
 
     public function getTagStringAttribute()
     {
-        $string = '';
-        if ($this->tags) {
-            foreach ($this->tags as $tag) {
-                $string .= $tag['tag'] . ", ";
-            }
+        if ($this->tags->isEmpty()) {
+            return '';
         }
-        return $string;
+
+        $string = $this->tags->reduce(function($str, $tag){
+            return $str . $tag->tag . ', ';
+        }, '');
+
+        return trim($string, ', ');
     }
 
 }
