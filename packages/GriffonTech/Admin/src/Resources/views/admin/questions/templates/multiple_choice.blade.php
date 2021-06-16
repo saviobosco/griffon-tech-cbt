@@ -113,9 +113,9 @@
         <label class="text-uppercase" for="question-difficulty">Difficulty <i class="fa fa-info-circle ml-3"></i> </label>
         <select class="form-control" name="difficulty_level" id="question-difficulty">
             <option value="">Select Difficulty</option>
-            <option value="difficulty">Difficulty</option>
+            <option value="difficulty">Difficult</option>
             <option value="easy">easy</option>
-            <option value="normal">normal</option>
+            <option value="normal" selected="selected">normal</option>
         </select>
     </div>
 </div>

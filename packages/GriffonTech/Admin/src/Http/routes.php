@@ -126,6 +126,18 @@ Route::group(['middleware' => ['web']], function() {
             Route::delete('/question-options/delete/{questionOption}', 'GriffonTech\Admin\Http\Controllers\QuestionOptionsController@destroy')
                 ->name('admin.question_options.delete');
 
+            /**
+             * Questions Import
+             */
+            Route::get('/questions/import','GriffonTech\Admin\Http\Controllers\QuestionsImportController@index')
+                ->defaults('_config', ['view' => 'admin::admin.questions_import.index'])
+                ->name('admin.questions_import.index');
+
+            Route::post('/questions/import','GriffonTech\Admin\Http\Controllers\QuestionsImportController@import')
+                ->defaults('_config', ['view' => 'admin::admin.questions_import.index'])
+                ->name('admin.questions_import.import');
+
+
 
             // Quizzes
             Route::get('/quizzes/index', 'GriffonTech\Admin\Http\Controllers\QuizzesController@index')

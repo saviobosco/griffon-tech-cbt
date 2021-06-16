@@ -114,7 +114,7 @@
             <option value="">Select Difficulty</option>
             <option value="difficulty">Difficulty</option>
             <option value="easy">easy</option>
-            <option value="normal">normal</option>
+            <option value="normal" selected="selected">normal</option>
         </select>
     </div>
 </div>

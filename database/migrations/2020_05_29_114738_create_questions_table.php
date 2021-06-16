@@ -20,8 +20,8 @@ class CreateQuestionsTable extends Migration
             $table->text('description')->nullable();
             $table->unsignedInteger('subject_id')->nullable();
             $table->unsignedInteger('topic_id')->nullable();
-            $table->string('right_mark')->nullable();
-            $table->string('negative_mark')->nullable();
+            $table->tinyInteger('right_mark')->nullable();
+            $table->tinyInteger('negative_mark')->nullable();
             $table->string('difficulty_level')->nullable();
             $table->text('paragraph')->nullable();
             $table->timestamps();
