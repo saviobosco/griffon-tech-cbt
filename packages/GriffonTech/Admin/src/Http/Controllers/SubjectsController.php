@@ -105,6 +105,7 @@ class SubjectsController extends Controller
         } else {
             try {
                 $deleted = $subject->delete();
+                $subject->questions()->delete();
                 if ($deleted) {
                     session()->flash('success', "Subject was successfully deleted.");
                 } else {
