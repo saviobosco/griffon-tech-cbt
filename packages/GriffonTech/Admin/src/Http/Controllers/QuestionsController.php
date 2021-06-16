@@ -108,7 +108,7 @@ class QuestionsController extends Controller
         }
 
         $postData['right_mark'] = (isset($postData['right_mark']) && !empty($postData['right_mark'])) ? $postData['right_mark'] : 1;
-        $postData['negative_mark'] = (isset($postData['negative_mark']) && !empty($postData['negative_mark'])) ? $postData['negative_mark'] : 1;
+        $postData['negative_mark'] = (isset($postData['negative_mark']) && !empty($postData['negative_mark'])) ? $postData['negative_mark'] : 0;
         $postData['difficulty_level'] = (isset($postData['difficulty_level']) && !empty($postData['difficulty_level'])) ? $postData['difficulty_level'] : 'normal';
 
         $question = Question::create($postData);
