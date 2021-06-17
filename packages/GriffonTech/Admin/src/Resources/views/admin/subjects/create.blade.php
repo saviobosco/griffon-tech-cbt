@@ -1,5 +1,8 @@
 @extends('admin::layouts.master')
 
+@section('page_title')
+    Add Subject
+@endsection
 
 @section('content')
 

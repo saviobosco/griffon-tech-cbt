@@ -1,5 +1,8 @@
-@extends('layout.master')
+@extends('admin::layouts.master')
 
+@section('page_title')
+    Edit subject : {{ $subject->name }}
+@endsection
 
 @section('content')
 
