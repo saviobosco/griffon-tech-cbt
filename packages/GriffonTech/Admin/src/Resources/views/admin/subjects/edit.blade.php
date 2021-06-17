@@ -12,7 +12,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        {!! Form::model($subject, ['route' => ['subjects.update', $subject->id], 'role' => 'form']) !!}
+                        {!! Form::model($subject, ['route' => ['admin.subjects.update', $subject->id], 'role' => 'form']) !!}
 
                         <div class="form-group">
                             <label for="name"> Name </label>

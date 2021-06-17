@@ -85,14 +85,14 @@ class SubjectsController extends Controller
             'status' => 'required'
         ]);
 
-        $subject = $subject->update($request->post());
-        if ($subject) {
+        $updated = $subject->update($request->post());
+        if ($updated) {
             session()->flash('success', 'Subject record was successfully updated');
         } else {
             session()->flash('error', 'Subject record could not be updated.Please try again.');
             return back()->withInput();
         }
-        return redirect()->route($this->_config['redirect']);
+        return redirect()->route($this->_config['redirect'], $subject->id);
     }
 
 
