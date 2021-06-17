@@ -65,7 +65,7 @@ class QuestionsImportController extends Controller
                         'difficulty_level' => $request->input('difficulty_level'),
                         'right_mark' => 1,
                         'negative_mark' => 0,
-                        'question' => $question['question']
+                        'question' => strip_tags($question['question'], '<strong><br><b><span>')
                     ]);
 
                     if ($storedQuestion) {
