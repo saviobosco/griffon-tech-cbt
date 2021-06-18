@@ -22,8 +22,10 @@
                 @foreach($questions as $index => $question)
                     <tr>
                         <td>
-                            <input type="checkbox" name="questions[{{$index}}]" {{ (isset($testQuestions[$question->id])) ? 'checked="checked"' : '' }}>
-                            <input type="hidden" name="questions[{{$index}}][question_id]" value="{{$question->id}}">
+                            <input type="checkbox" name="questions[{{$index}}][question_id]" value="{{$question->id}}"  {{ (isset($testQuestions[$question->id])) ? 'checked="checked"' : '' }}>
+
+<!--                            <input type="hidden" name="questions[{{$index}}][question_id]" value="{{$question->id}}">
+                            -->
                             @if (isset($testQuestions[$question->id]))
                                 <input type="hidden" name="questions[{{$index}}][test_question_id]" value="{{$testQuestions[$question->id][0]['id'] }}">
                             @endif
@@ -64,6 +66,9 @@
     {!! Form::close() !!}
 
 
+    <div id="pagination-links">
+        {{ $questions->links() }}
+    </div>
 @else
 
     <div class="card">

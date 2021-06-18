@@ -164,8 +164,17 @@
         event.preventDefault();
 
         $.post(this.action, $(this).serialize(), function(response) {
-            toastr.success('Saved!');
-            fetchQuestion();
+            toastr.success('Test questions saved!');
+            //fetchQuestion();
         });
     });
+
+    // load the pagination data.
+    $('#display-questions').on("click", "#pagination-links a", function(event){
+        event.preventDefault();
+
+        $.get(event.currentTarget.href, null, function(response) {
+            $('#display-questions').html(response);
+        });
+    })
 </script>

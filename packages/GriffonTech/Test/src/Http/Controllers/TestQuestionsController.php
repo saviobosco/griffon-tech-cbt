@@ -44,11 +44,15 @@ class TestQuestionsController extends Controller
             (isset($getParams['question_type']) && !empty($getParams['question_type'])) ) {
 
             $questions = $this->questionRepository
-                ->findWhere([
-                    'subject_id' => $getParams['subject_id'],
-                    'topic_id' => $getParams['topic_id'],
-                    'type' => $getParams['question_type']
-                ]);
+                ->getModel()
+                ->where('subject_id', $getParams['subject_id'])
+                ->where('topic_id', $getParams['topic_id'])
+                ->where('type', $getParams['question_type'])
+                ->paginate(10);
+
+            // setting the pagination base path
+            $questions->withPath($request->fullUrlWithQuery([]));
+
 
             $testQuestions = $this->testQuestionRepository
                 ->findWhere([
@@ -73,28 +77,37 @@ class TestQuestionsController extends Controller
             ->with(compact('test', 'subjects'));
     }
 
-
+    // Todo: Refine this algorithm
     public function update(Request $request, Test $test)
     {
         $postData = $request->input();
         if (!empty($postData['questions'])) {
             foreach ($postData['questions'] as $question) {
-                if (isset($question['test_question_id'])) {
-                    $testQuestion = $this->testQuestionRepository
-                        ->find($question['test_question_id']);
 
-                    $testQuestion->update([
-                        'right_mark' => @$question['right_mark'],
-                        'negative_mark' => @$question['negative_mark']
-                    ]);
-                } else {
-                    $this->testQuestionRepository
-                        ->create([
-                            'test_id' => $test->id,
-                            'question_id' => @$question['question_id'],
+                if (isset($question['question_id'])) {
+                    if (isset($question['test_question_id'])) {
+                        $testQuestion = $this->testQuestionRepository
+                            ->find($question['test_question_id']);
+
+                        $testQuestion->update([
                             'right_mark' => @$question['right_mark'],
                             'negative_mark' => @$question['negative_mark']
                         ]);
+                    } else {
+                        $this->testQuestionRepository
+                            ->create([
+                                'test_id' => $test->id,
+                                'question_id' => @$question['question_id'],
+                                'right_mark' => @$question['right_mark'],
+                                'negative_mark' => @$question['negative_mark']
+                            ]);
+                    }
+                } else { // remove the record from the database
+                    if (isset($question['test_question_id'])) {
+                        $testQuestion = $this->testQuestionRepository
+                            ->find($question['test_question_id']);
+                        $testQuestion->delete();
+                    }
                 }
             }
         }
