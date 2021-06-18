@@ -122,6 +122,7 @@ class TestsController extends Controller
         // do not delete the test.
         try {
             $test->delete();
+            $test->questions()->delete();
             // delete the test questions
             // delete the test candidate group records
             // delete the test product records
