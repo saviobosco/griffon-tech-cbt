@@ -69,10 +69,18 @@ Route::group(['middleware' => ['web']], function(){
                     'redirect' => ''
                 ])->name('candidate.test_sessions.submit_test');
 
+            Route::get('test-sessions/completed', 'GriffonTech\Candidate\Http\Controllers\TestSessionsController@showCompleted')
+                ->defaults('_config', [
+                    'view' => 'candidate::candidate.test_sessions.completed'
+                ])->name('candidate.test_sessions.completed');
+
+
             Route::get('test-reports/show/{testSession}', 'GriffonTech\Candidate\Http\Controllers\TestSessionsController@showReport')
                 ->defaults('_config', [
                     'view' => 'candidate::candidate.test_reports.show_report'
                 ])->name('candidate.test_reports.show_report');
+
+
 
 
             /** My Test Reports */

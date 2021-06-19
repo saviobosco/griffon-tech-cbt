@@ -377,10 +377,14 @@ class TestSessionsController extends Controller
         session()->flash('success', 'Your test was successfully submitted!.');
 
         return [
-            'redirect_url' => route('candidate.test_reports.show_report', $testSession->id)
+            'redirect_url' => route('candidate.test_sessions.completed')
         ];
     }
 
+    public function showCompleted()
+    {
+        return view($this->_config['view']);
+    }
 
     public function showReport(TestSession $testSession)
     {

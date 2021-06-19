@@ -23,24 +23,14 @@
                                 <th>S.No</th>
                                 <th>Name</th>
                                 <th>Date Taken</th>
-                                <th>Duration</th>
+                                <th>Time spent</th>
                                 <th>Score</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>101</td>
-                                    <td>Jamb Sample 1</td>
-                                    <td>20-03-2021</td>
-                                    <td>20 Minutes</td>
-                                    <td> 85 </td>
-                                    <td>Completed</td>
-                                    <td>
-                                        <a href="{{ route('candidate.test_reports.view', 1) }}">View result</a>
-                                    </td>
-                                </tr>
+
                             </tbody>
                         </table>
                     </div>

@@ -85,6 +85,9 @@
                                 <?php $num = 1; ?>
                                 @foreach($questions as $question)
                                     <div class="mt-3 p-4 border question-container" id="question-number-{{$num}}">
+                                        <p>
+                                            Score : <span> </span>
+                                        </p>
                                         <h6>Question: {{ $num }} </h6>
                                         <p class="text-bold"> {{ $question->question }} </p>
 

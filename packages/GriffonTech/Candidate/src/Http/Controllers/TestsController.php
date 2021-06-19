@@ -7,6 +7,7 @@ namespace GriffonTech\Candidate\Http\Controllers;
 use Carbon\Carbon;
 use GriffonTech\Question\Repositories\QuestionRepository;
 use GriffonTech\Test\Models\Test;
+use GriffonTech\Test\Repositories\TestRepository;
 use GriffonTech\Test\Repositories\TestSessionRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,24 +17,31 @@ class TestsController extends Controller
     protected $_config;
     protected $testSessionRepository;
     protected $questionRepository;
+    protected $testRepository;
 
     public function __construct(
         TestSessionRepository $testSessionRepository,
-        QuestionRepository $questionRepository
+        QuestionRepository $questionRepository,
+        TestRepository $testRepository
     )
     {
         $this->_config = request('_config');
 
         $this->testSessionRepository = $testSessionRepository;
         $this->questionRepository = $questionRepository;
+        $this->testRepository = $testRepository;
     }
 
 
     public function index()
     {
-        // get all free test
-        // display list of free tests.
-        return view($this->_config['view']);
+        $tests = $this->testRepository
+            ->findWhere([
+                'is_published' => 1
+            ]);
+
+        return view($this->_config['view'])
+            ->with(compact('tests'));
     }
 
 

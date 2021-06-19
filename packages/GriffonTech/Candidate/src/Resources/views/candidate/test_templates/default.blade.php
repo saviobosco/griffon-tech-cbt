@@ -624,6 +624,17 @@
         }
     }
 
+    function endTest()
+    {
+        saveAnswer();
+        $.post(window.origin + '/candidate/test-sessions/submit/' + test_session_id, function(data, statusText, xhr){
+            console.log(data);
+            if (data.redirect_url !== undefined && data.hasOwnProperty('redirect_url')) {
+                window.location = data.redirect_url;
+            }
+        });
+    }
+
     function goToQuestion(number) {
         // saveResult
 
@@ -719,7 +730,7 @@
     setTimeout(function(){
         alert("Time Over");
 
-        submitTest();
+        endTest();
     }, {{ $timeRemaining }} * 1000);
 
 </script>
