@@ -1,0 +1,114 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: application-config
+data:
+    APP_NAME: test-app
+    APP_ENV: production
+    APP_DEBUG: "false"
+    APP_URL: http://localhost:8080
+    LOG_CHANNEL: stack
+    LOG_LEVEL: debug
+    DB_CONNECTION: mysql
+    DB_HOST: mysql
+    DB_PORT: "3306"
+    DB_DATABASE: application
+    DB_USERNAME: ahmed
+    BROADCAST_DRIVER: log
+    CACHE_DRIVER: redis
+    QUEUE_CONNECTION: sync
+    SESSION_DRIVER: redis
+    SESSION_LIFETIME: "120"
+    PROMETHEUS_NAMESPACE: default
+    PROMETHEUS_METRICS_ROUTE_ENABLED: "true"
+    PROMETHEUS_METRICS_ROUTE_PATH: metrics
+    PROMETHEUS_METRICS_ROUTE_MIDDLEWARE: "null"
+    PROMETHEUS_STORAGE_ADAPTER: memory
+    REDIS_HOST: redis-master
+    REDIS_PORT: "6379"
+    REDIS_CLIENT: "predis"
+    PROMETHEUS_REDIS_PREFIX: PROMETHEUS_
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+    name: application-secret
+type: Opaque
+data:
+    REDIS_PASSWORD: cmRzaGFyZFBhc3MxMjM=
+    DB_PASSWORD: c3FsaGFyZFBhc3MxMjM=
+    APP_KEY: YmFzZTY0OnhwVDVZWkdtZWZ1TXFqVmlIODVxTE15cGxNR244WXhoQkVGcGMrVElKbTQ9
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: web-application
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: web-application
+    template:
+        metadata:
+            labels:
+                app: web-application
+            annotations:
+                prometheus.io/scrape: "true"
+                prometheus.io/path: /metrics
+                prometheus.io/port: "80"
+        spec:
+            volumes:
+                - name: logs
+                  emptyDir: {}
+                - name: views
+                  emptyDir: {}
+            securityContext:
+                fsGroup: 82
+            initContainers:
+                - name: database-migrations
+                  image: saviobosco/quiz-app-backend:1.0.0
+                  imagePullPolicy: IfNotPresent
+                  envFrom:
+                      - configMapRef:
+                            name: application-config
+                      - secretRef:
+                            name: application-secret
+                  command:
+                      - "php"
+                  args:
+                      - "artisan"
+                      - "migrate"
+                      - "--force"
+            containers:
+                - name: nginx
+                  imagePullPolicy: IfNotPresent
+                  image: saviobosco/quiz-app-frontend:1.0.0
+                  resources: {}
+                    # limits:
+                    #   cpu: 500m
+                    #   memory: 50M
+                  ports:
+                      - containerPort: 80
+                - name: fpm
+                  imagePullPolicy: IfNotPresent
+                  envFrom:
+                      - configMapRef:
+                            name: application-config
+                      - secretRef:
+                            name: application-secret
+                  securityContext:
+                      runAsUser: 82
+                      readOnlyRootFilesystem: true
+                  volumeMounts:
+                      - name: logs
+                        mountPath: /var/www/html/storage/logs
+                      - name: views
+                        mountPath: /var/www/html/storage/framework/views
+                  resources: {}
+                  image: saviobosco/quiz-app-backend:1.0.0
+                  ports:
+                      - containerPort: 9000
